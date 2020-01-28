@@ -34,18 +34,56 @@ main, article, header, nav, section, aside, footer {
 
 html {
 	background-color: #000;
+	color: #fff;
 }
 
 body {
 	margin: 0 auto;
-	
+	width: 100%;
+	/*border: 1px dashed white;*/
 }
+#background-image {
+	background: url('../images/spacex-hero-img_1920_o72.jpg') no-repeat fixed center/cover;
+	max-width: 1920px;
+	height: 1500px;
+}
+
+/* Font declarations
+---------------------*/
+
 h1 {
 	font-family: "worksans-extralight";
-	font-size: 40px;
 }
 p {
-	color: black;
 	font-family: "montserrat-light";
-	font-size: 20px;
+}
+
+
+/* MEDIA QUERIES 
+-------------------------*/
+@media screen and (min-width: 801px) and (max-width: 1280px) {
+
+	#background-image {
+		background-image: url('../images/spacex-hero-img_1280_o72.jpg');
+		max-width: 1280px;
+
+	}
+}
+
+@media screen and (min-width: 481px) and (max-width: 800px) {
+
+	#background-image {
+		background-image: url('../images/spacex-hero-img_800_o72.jpg');
+		max-width: 800px;
+
+	}
+}
+@media screen and (max-width: 480px) {
+
+	#background-image {
+		background-image: url('../images/spacex-hero-img_400_o72.jpg');
+		max-width: 400px;
+		/* IMAGE MUST BE EDITED: 480px */
+	}
+
 }
