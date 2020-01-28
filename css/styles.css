@@ -1,3 +1,54 @@
+@font-face {
+	font-family: "worksans-extralight";
+	src: url("../fonts/worksans-extralight.woff2") format("woff2");
+	src: url("../fonts/worksans-extralight.woff") format("woff");
+	src: url("../fonts/worksans-extralight.ttf") format("truetype");
+}
+@font-face {
+	font-family: "worksans-regular";
+	src: url("../fonts/worksans-regular.woff2") format("woff2");
+	src: url("../fonts/worksans-regular.woff") format("woff");
+	src: url("../fonts/worksans-regular.ttf") format("truetype");
+}
+@font-face {
+	font-family: "montserrat-light";
+	src: url("../fonts/montserrat-light.woff2") format("woff2");
+	src: url("../fonts/montserrat-light.woff") format("woff");
+	src: url("../fonts/montserrat-light.ttf") format("truetype");
+}
+
+/* Colors
+-----------
+Black:	#000	rgb(0, 0, 0)
+White:	#fff	rgb(255, 255, 255)
+Blue:	#06204A	rgb(6, 32, 74)
+Yellow:	#EBE756	rgb(235, 231, 86)
+Red:	#C93C39	rgb(201, 60, 57)
+*/
+
+/* GLOBAL
+------------------------------------------*/
+main, article, header, nav, section, aside, footer {
+	display: block;
+}
+
+html {
+	background-color: #000;
+	color: #fff;
+	/*font-size: 16px;*/
+}
+
+body {
+	margin: 0 auto;
+	max-width: 1280px;
+	height: 800px;
+}
+h1 {
+	font-family: "worksans-extralight";
+	font-size: 40px;
+}
 p {
-	color: green;
+	color: black;
+	font-family: "montserrat-light";
+	font-size: 20px;
 }
