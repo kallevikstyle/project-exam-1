@@ -51,11 +51,14 @@ body {
 /* Font declarations
 ---------------------*/
 
-h1 {
-	font-family: "worksans-extralight";
+h1, h2 {
+	font-family: "worksans-extralight", arial, sans-serif;
+}
+h3 {
+	font-family: "worksans-regular", Arial, sans-serif;
 }
 p {
-	font-family: "montserrat-light";
+	font-family: "montserrat-light", helvetica, sans-serif;
 }
 
 
