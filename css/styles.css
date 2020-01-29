@@ -47,11 +47,17 @@ body {
 	max-width: 1920px;
 	height: 1500px;
 }
+nav ul {
+	padding-left: 0;
+}
+nav ul li {
+	display: inline-block;
+}
 
 /* Font declarations
 ---------------------*/
 
-h1, h2 {
+h1, h2, #main-navigation {
 	font-family: "worksans-extralight", arial, sans-serif;
 }
 h3 {
@@ -78,7 +84,12 @@ p {
 	left: 40px;
 	background: url(../images/spacex_logo_white.png) no-repeat center/contain;
 }
-/* logo 504 * 63 */
+
+#page-header #main-navigation {
+	border: 1px dotted yellow;
+	position: absolute;
+	left: 300px;
+}
 
 /* MEDIA QUERIES 
 -------------------------*/
