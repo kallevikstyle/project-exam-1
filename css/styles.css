@@ -35,6 +35,7 @@ main, article, header, nav, section, aside, footer {
 html {
 	background-color: #000;
 	color: #fff;
+	font-size: 16px;
 }
 
 body {
@@ -49,11 +50,22 @@ body {
 }
 nav ul {
 	padding-left: 0;
+	margin: 0;
 }
 nav ul li {
 	display: inline-block;
+	padding: 3px 5px;
 }
-
+#page-header a {
+	width: 100%;
+	height: 100%;
+	display: block;
+	text-decoration: none;
+	color: #fff;
+}
+#page-header a:visited {
+	color: #fff;
+}
 /* Font declarations
 ---------------------*/
 
@@ -86,9 +98,13 @@ p {
 }
 
 #page-header #main-navigation {
-	border: 1px dotted yellow;
+	width: 500px;
+	margin-left: -250px;
+	text-align: center;
 	position: absolute;
-	left: 300px;
+	left: 50%;
+	bottom: 0;
+	font-size: 1.3em;
 }
 
 /* MEDIA QUERIES 
