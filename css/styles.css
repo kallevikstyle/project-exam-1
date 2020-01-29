@@ -66,8 +66,19 @@ p {
 #page-header {
 	width: 100%;
 	height: 100px;
+	position: relative;
 	border-bottom: 1px dashed white;
 }
+
+#page-header #logo {
+	width: 200px;
+	height: 30px;
+	position: absolute;
+	top: 30px;
+	left: 40px;
+	background: url(../images/spacex_logo_white.png) no-repeat center/contain;
+}
+/* logo 504 * 63 */
 
 /* MEDIA QUERIES 
 -------------------------*/
