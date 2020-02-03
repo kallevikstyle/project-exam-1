@@ -66,10 +66,23 @@ nav ul li {
 #page-header a:visited {
 	color: #fff;
 }
+.flex {
+	display: flex;
+}
+
+/* Buttons */
+.button {
+	font-size: 1.2em;
+	padding: 4px 5px;
+}
+.info-button {
+	background-color: #06204A;
+}
+
 /* Font declarations
 ---------------------*/
 
-h1, h2, #main-navigation {
+h1, h2, #main-navigation, #time-left span, .button {
 	font-family: "worksans-extralight", arial, sans-serif;
 }
 h3 {
@@ -119,14 +132,28 @@ PAGES
 
 #top-container {
 	/* height is defined in index-structure.js */
-	border: 1px dashed white;
+	/* border: 1px dashed white; */
 	width: 55%;
 	margin: 0 auto;
 }
 #countdown {
-	border: 1px dotted yellow;
+	flex-direction: column;
 	position: relative;
 	top: 35%;
+	text-align: center;
+}
+#countdown h2 {
+	position: absolute;
+	left: -9999px;
+}
+#countdown #time-left {
+	font-size: 1.5em;
+}
+#countdown p {
+	margin: 0 0 8px 0;
+}
+#countdown #time-left span {
+	font-size: 1.6em;
 }
 
 /* MEDIA QUERIES 
