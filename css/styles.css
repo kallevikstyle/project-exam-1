@@ -154,6 +154,10 @@ PAGES
 }
 #countdown #time-left span {
 	font-size: 1.6em;
+	margin-left: 10px;
+}
+#countdown #time-left span:first-child {
+	margin-left: 0;
 }
 
 /* MEDIA QUERIES 
