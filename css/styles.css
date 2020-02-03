@@ -87,6 +87,11 @@ p {
 	position: relative;
 }
 
+#page-header h1 {
+	position: absolute;
+	left: -9999px;
+}
+
 #page-header #logo {
 	width: 200px;
 	height: 30px;
