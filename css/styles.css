@@ -89,7 +89,7 @@ nav ul li {
 /* Font declarations
 ---------------------*/
 
-h1, h2, #main-navigation, #time-left span, .button {
+h1, h2, #main-navigation, #time-left span, .button, #cta-down {
 	font-family: "worksans-extralight", arial, sans-serif;
 }
 h3 {
@@ -143,7 +143,7 @@ PAGES
 	width: 55%;
 	margin: 0 auto;
 	position: relative;
-	border: 1px dashed Yellow;
+	/* border: 1px dashed Yellow; */
 }
 #top-container::before {
 	content: "\00a0";
@@ -176,18 +176,57 @@ PAGES
 #countdown #time-left span:first-child {
 	margin-left: 0;
 }
-
+/* CTA navigation */
 #cta-navigation {
-	border: 1px dashed white;
-	margin-top: 50px;
+	/* border: 1px dashed white; */
+	max-width: 600px;
+	margin: 50px auto 0 auto;
 	/*height: 500px;*/
-	text-align: center;	
+	text-align: center;
+	flex-direction: column;
+	justify-content: center;
 }
-#measure {
-	width: 500px;
-	height: 200px;
-	margin: 0 auto;
-	border: 1px dashed pink;
+#cta-navigation > .flex {
+	justify-content: center;
+}
+
+#cta-rockets {
+	width: 36%;
+	height: 72px;
+	background-image: url('../images/buttons/rockets_normal.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center right;
+	/* border: 1px dotted red; */
+}
+#cta-circle {
+	width: 24%;
+	font-size: 4rem;
+	/* border: 1px dotted red; */
+}
+#cta-circle i {
+	transform: rotate(-50grad);
+}
+#cta-launches {
+	width: 36%;
+	height: 72px;
+	background-image: url('../images/buttons/launches_normal.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center left;
+	/* border: 1px dotted red; */
+}
+#cta-down {
+	margin: 10px auto 0 auto;
+	width: 24%;
+	height: 140px;
+	font-size: 1.2rem;
+	color: #ebe756;
+	background-image: url('../images/buttons/down_normal.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	/* border: 1px dashed lightblue; */
 }
 
 
