@@ -2,6 +2,8 @@
 function setTopContainerHeight(height) {
     const pageHeaderHeight = document.querySelector('#page-header').offsetHeight,
         topContainer = document.querySelector('#top-container');
+    // Set container top offset to header height
+    topContainer.style.top = pageHeaderHeight + "px";
     // Set container height to window height minus header
     topContainer.style.height = (height - pageHeaderHeight) + "px";
 }
