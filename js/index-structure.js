@@ -5,7 +5,7 @@ function setTopContainerHeight(height) {
     // Set container top offset to header height
     topContainer.style.top = pageHeaderHeight + "px";
     // Set container height to window height minus header
-    topContainer.style.height = (height - pageHeaderHeight) + "px";
+    topContainer.style.minHeight = (height - pageHeaderHeight) + "px";
 }
 
 // Find the height of the current viewport
