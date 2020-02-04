@@ -145,7 +145,12 @@ PAGES
 #top-container::before {
 	content: "\00a0";
 }
-
+#bottom-container {
+	border: 1px dashed green;
+	width: 55%;
+	margin: 0 auto;
+	position: relative;
+}
 #countdown {
 	flex-direction: column;
 	margin-top: 250px;
