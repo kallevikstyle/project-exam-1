@@ -132,7 +132,7 @@ PAGES
 
 #top-container {
 	/* height is defined in index-structure.js */
-	/* border: 1px dashed white; */
+	 border: 1px dashed white; 
 	width: 55%;
 	margin: 0 auto;
 }

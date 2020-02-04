@@ -8,7 +8,7 @@ function setTopContainerHeight(height) {
 
 // Find the height of the current viewport
 (function findViewportHeight() { 
-    let windowHeight = window.visualViewport.height;
+    let windowHeight = document.documentElement.clientHeight;
     // Call function to set container height
     setTopContainerHeight(windowHeight);
 
@@ -16,9 +16,9 @@ function setTopContainerHeight(height) {
     window.addEventListener('resize', function() {
         // Set timeout to avoid excess execution
         setTimeout(function () {
-            if (window.visualViewport.height !== windowHeight) {
+            if (document.documentElement.clientHeight !== windowHeight) {
                 // Update container height if window height has changed
-                windowHeight = window.visualViewport.height;
+                windowHeight = document.documentElement.clientHeight;
                 setTopContainerHeight(windowHeight);
             }
         }, 600);   
