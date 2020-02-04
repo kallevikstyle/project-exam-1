@@ -43,6 +43,10 @@ body {
 	width: 100%;
 	/*border: 1px dashed white;*/
 }
+h2 {
+	font-size: 1.2rem;
+	text-align: center;
+}
 #background-image {
 	background: url('../images/spacex-hero-img_1920_o72.jpg') no-repeat fixed center/cover;
 	max-width: 1920px;
@@ -140,7 +144,6 @@ PAGES
 	margin: 0 auto;
 	position: relative;
 	border: 1px dashed Yellow;
-	/*overflow: hidden;*/
 }
 #top-container::before {
 	content: "\00a0";
