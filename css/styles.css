@@ -76,9 +76,11 @@ nav ul li {
 	font-size: 1.2rem;
 	padding: 4px 5px;
 }
+
 .info-button {
 	background-color: #06204A;
 }
+
 
 /* Font declarations
 ---------------------*/
@@ -137,7 +139,8 @@ PAGES
 	width: 55%;
 	margin: 0 auto;
 	position: relative;
-	/*border: 1px dashed Yellow;*/
+	border: 1px dashed Yellow;
+	/*overflow: hidden;*/
 }
 #top-container::before {
 	content: "\00a0";
@@ -167,8 +170,18 @@ PAGES
 }
 
 #cta-navigation {
-	border: 1px dashed white; 
+	border: 1px dashed white;
+	margin-top: 50px;
+	/*height: 500px;*/
+	text-align: center;	
 }
+#measure {
+	width: 500px;
+	height: 200px;
+	margin: 0 auto;
+	border: 1px dashed pink;
+}
+
 
 /* MEDIA QUERIES 
 -------------------------*/
