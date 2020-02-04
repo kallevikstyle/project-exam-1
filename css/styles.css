@@ -72,7 +72,7 @@ nav ul li {
 
 /* Buttons */
 .button {
-	font-size: 1.2em;
+	font-size: 1.2rem;
 	padding: 4px 5px;
 }
 .info-button {
@@ -121,7 +121,7 @@ p {
 	position: absolute;
 	left: 50%;
 	bottom: 0;
-	font-size: 1.4em;
+	font-size: 1.4rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -132,7 +132,7 @@ PAGES
 
 #top-container {
 	/* height is defined in index-structure.js */
-	 border: 1px dashed white; 
+	 /*border: 1px dashed white; */
 	width: 55%;
 	margin: 0 auto;
 }
@@ -147,7 +147,7 @@ PAGES
 	left: -9999px;
 }
 #countdown #time-left {
-	font-size: 1.5em;
+	font-size: 1.5rem;
 }
 #countdown p {
 	margin: 0 0 8px 0;
