@@ -47,6 +47,10 @@ h2 {
 	font-size: 1.2rem;
 	text-align: center;
 }
+a {
+	text-decoration: none;
+	color: #ebe756;
+}
 #background-image {
 	background: url('../images/spacex-hero-img_1920_o72.jpg') no-repeat fixed center/cover;
 	max-width: 1920px;
@@ -78,11 +82,16 @@ nav ul li {
 /* Buttons */
 .button {
 	font-size: 1.2rem;
-	padding: 4px 5px;
+	
+}
+.button a {
+	display: block;
+	height: 100%;
 }
 
 .info-button {
 	background-color: #06204A;
+	padding: 4px 5px;
 }
 
 
@@ -219,14 +228,17 @@ PAGES
 #cta-down {
 	margin: 10px auto 0 auto;
 	width: 24%;
-	height: 140px;
+	height: 100px;
 	font-size: 1.2rem;
 	color: #ebe756;
 	background-image: url('../images/buttons/down_normal-2.png');
 	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: center;
-	/* border: 1px dashed lightblue; */
+	background-size: contain cover;
+	background-position: center bottom;
+	/*border: 1px dashed lightblue; */
+}
+#cta-down a {
+	
 }
 
 
