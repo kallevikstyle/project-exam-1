@@ -78,11 +78,32 @@ nav ul li {
 .flex {
 	display: flex;
 }
+.mission-container {
+	/*display: flex;*/
+	/*flex-wrap: nowrap;*/
+	border: 1px solid #fff;
+	border-radius: 4px;
+	margin: 0 auto;
+	width: 95%;
+}
+.mission-container .mission-img {
+	flex: 1;
 
+	padding: 5px;
+}
+.mission-img img {
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+}
+.mission-container .mission-text {
+	flex: 2;
+
+}
 /* Buttons */
 .button {
 	font-size: 1.2rem;
-	
+	text-align: center;
 }
 .button a {
 	display: block;
@@ -152,17 +173,12 @@ PAGES
 	width: 55%;
 	margin: 0 auto;
 	position: relative;
-	/* border: 1px dashed Yellow; */
+	/*border: 1px dashed Yellow; */
 }
 #top-container::before {
 	content: "\00a0";
 }
-#bottom-container {
-	border: 1px dashed green;
-	width: 55%;
-	margin: 0 auto;
-	position: relative;
-}
+
 #countdown {
 	flex-direction: column;
 	margin-top: 200px;
@@ -189,8 +205,7 @@ PAGES
 #cta-navigation {
 	/* border: 1px dashed white; */
 	max-width: 600px;
-	margin: 180px auto 0 auto;
-	/*height: 500px;*/
+	margin: 140px auto 0 auto;
 	text-align: center;
 	flex-direction: column;
 	justify-content: center;
@@ -237,9 +252,14 @@ PAGES
 	background-position: center bottom;
 	/*border: 1px dashed lightblue; */
 }
-#cta-down a {
-	
+
+#bottom-container {
+	border: 1px dashed green;
+	width: 55%;
+	margin: 0 auto;
+	position: relative;
 }
+
 
 
 /* MEDIA QUERIES 
