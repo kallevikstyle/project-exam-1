@@ -48,9 +48,10 @@ h2 {
 	text-align: center;
 }
 h3 {
-	display: inline-block;
+	/*display: inline-block;*/
 	margin: 0;
-	/* font-size: 1rem; */
+	padding: 0;
+	 /*font-size: 1.2rem; */
 
 }
 a {
@@ -84,9 +85,8 @@ nav ul li {
 .flex {
 	display: flex;
 }
+/* Mission containers */
 .mission-container {
-	/*display: flex;*/
-	/*flex-wrap: nowrap;*/
 	border: 1px solid #fff;
 	border-radius: 4px;
 	margin: 0 auto;
@@ -94,7 +94,6 @@ nav ul li {
 }
 .mission-container .mission-img {
 	flex: 1;
-
 	padding: 5px;
 }
 .mission-img img {
@@ -104,12 +103,33 @@ nav ul li {
 }
 .mission-container .mission-text {
 	flex: 2;
-	padding: 20px 0 0 20px;
+	padding: 40px 0 20px 20px;
 }
 .mission-text p {
-	display: inline-block;
-	margin: 0 0 10px 0;
+	/*display: inline-block;*/
+	padding-top: 3px;
+	margin: 0;
 }
+.mission-text > div {
+	display: flex;
+	flex-wrap: wrap;
+	/*font-size: 1.2rem;*/
+}
+.mission-heading {
+	flex: 1;
+	text-align: right;
+	margin-right: 5px;
+	/*width: 40%;*/
+	/*border: 1px dotted Yellow;*/
+}
+.mission-value {
+	flex: 2;
+	/*display: inline-block;*/
+	/*float: right;*/
+	/*width: 50%;*/
+	/*border: 1px dotted Yellow;*/
+}
+
 /* Buttons */
 .button {
 	font-size: 1.2rem;
