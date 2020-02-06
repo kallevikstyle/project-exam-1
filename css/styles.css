@@ -85,6 +85,7 @@ nav ul li {
 .flex {
 	display: flex;
 }
+
 /* Mission containers */
 .mission-container {
 	border: 1px solid #fff;
@@ -106,28 +107,21 @@ nav ul li {
 	padding: 40px 0 20px 20px;
 }
 .mission-text p {
-	/*display: inline-block;*/
 	padding-top: 3px;
 	margin: 0;
 }
 .mission-text > div {
 	display: flex;
 	flex-wrap: wrap;
-	/*font-size: 1.2rem;*/
 }
 .mission-heading {
 	flex: 1;
 	text-align: right;
 	margin-right: 5px;
-	/*width: 40%;*/
-	/*border: 1px dotted Yellow;*/
+	
 }
 .mission-value {
 	flex: 2;
-	/*display: inline-block;*/
-	/*float: right;*/
-	/*width: 50%;*/
-	/*border: 1px dotted Yellow;*/
 }
 
 /* Buttons */
