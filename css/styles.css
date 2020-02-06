@@ -184,6 +184,14 @@ p {
 	bottom: 0;
 	font-size: 1.4rem;
 }
+/* Page footer
+------------------------- */
+#page-footer {
+	width: 100%;
+	height: 200px;
+	margin-top: -200px; /*Hvorfor funker dette? Er position absolute bedre?*/
+	border-top: 1px dashed white;
+}
 
 /* --------------------------------------------------------------------------
 PAGES
@@ -281,6 +289,7 @@ PAGES
 	width: 55%;
 	margin: 0 auto;
 	position: relative;
+
 }
 
 
