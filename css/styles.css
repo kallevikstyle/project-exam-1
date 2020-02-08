@@ -188,16 +188,13 @@ p {
 /* Page footer
 ------------------------- */
 #page-footer {
-	padding: 0 20px;
 	width: 100%;
-	height: 200px;
-	margin-top: -200px; /*Hvorfor funker dette? Er position absolute bedre?*/
+	height: 150px;
+	margin-top: -150px; /*Hvorfor funker dette? Er position absolute bedre?*/
 	text-align: center;
-	border-top: 1px dashed white;
 }
 #page-footer > div {
-	/* border: 1px dashed yellow; */
-	margin-top: 50px;
+	flex: 1;
 }
 #page-footer p {
 	font-size: 0.8rem;
@@ -206,9 +203,19 @@ p {
 	display: block;
 	margin: 0 auto;
 	height: 16px;
-	box-align: center;
 }
-
+#page-footer #social-links {
+	font-size: 2.4em;
+	justify-content: center;
+}
+#social-links div {
+	margin-top: 10%;
+	vertical-align: middle;
+	margin-left: 20px;
+}
+#social-links div:first-child {
+	margin-left: 0;
+}
 /* --------------------------------------------------------------------------
 PAGES
 -------------------------------------------------------------------------- */
