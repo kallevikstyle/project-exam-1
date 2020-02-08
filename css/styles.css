@@ -72,7 +72,8 @@ nav ul li {
 	display: inline-block;
 	padding: 3px 5px;
 }
-#page-header a {
+#page-header a,
+#page-footer a {
 	width: 100%;
 	height: 100%;
 	display: block;
@@ -187,10 +188,25 @@ p {
 /* Page footer
 ------------------------- */
 #page-footer {
+	padding: 0 20px;
 	width: 100%;
 	height: 200px;
 	margin-top: -200px; /*Hvorfor funker dette? Er position absolute bedre?*/
+	text-align: center;
 	border-top: 1px dashed white;
+}
+#page-footer > div {
+	/* border: 1px dashed yellow; */
+	margin-top: 50px;
+}
+#page-footer p {
+	font-size: 0.8rem;
+}
+#footer-logo {
+	display: block;
+	margin: 0 auto;
+	height: 16px;
+	box-align: center;
 }
 
 /* --------------------------------------------------------------------------
