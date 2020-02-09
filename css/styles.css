@@ -209,12 +209,15 @@ p {
 	justify-content: center;
 }
 #social-links div {
-	margin-top: 10%;
+	margin-top: 8%;
 	vertical-align: middle;
 	margin-left: 20px;
 }
 #social-links div:first-child {
 	margin-left: 0;
+}
+#social-links a {
+	display: inline;
 }
 /* --------------------------------------------------------------------------
 PAGES
