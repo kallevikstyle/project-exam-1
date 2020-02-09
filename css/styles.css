@@ -87,6 +87,12 @@ nav ul li {
 	display: flex;
 }
 
+#background-image > * {
+	position: relative;
+	width: 55%;
+	margin: 0 auto;
+}
+
 /* Mission containers */
 .mission-container {
 	border: 1px solid #fff;
@@ -133,13 +139,20 @@ nav ul li {
 .button a {
 	display: block;
 	height: 100%;
+	padding: 4px 5px;
+	color: #fff;
 }
 
 .info-button {
 	background-color: #06204A;
-	padding: 4px 5px;
+	/* padding: 4px 5px; */
 }
 
+/* Form fields */
+input[type=text] {
+	padding: 2px 8px;
+	font-size: 1.2rem;
+}
 /* Font declarations
 ---------------------*/
 
@@ -149,7 +162,7 @@ h1, h2, #main-navigation, #time-left span, .button, #cta-down {
 h3 {
 	font-family: "worksans-regular", Arial, sans-serif;
 }
-p {
+p, input {
 	font-family: "montserrat-light", helvetica, sans-serif;
 }
 
@@ -223,14 +236,11 @@ p {
 PAGES
 -------------------------------------------------------------------------- */
 
-/* Index */
+/* Index
+--------------*/
 
 #top-container {
 	/* height is defined in index-structure.js */
-	width: 55%;
-	margin: 0 auto;
-	position: relative;
-	/*border: 1px dashed Yellow; */
 }
 #top-container::before {
 	content: "\00a0";
@@ -311,14 +321,30 @@ PAGES
 }
 
 #bottom-container {
-	/* border: 1px dashed green; */
-	width: 55%;
-	margin: 0 auto;
-	position: relative;
 
 }
 
-
+/* Launches
+----------------*/
+#launches-search {
+	/* border: 1px dashed lime; */
+	/* margin-top: 100px; */
+}
+#launches-search > div {
+	text-align: center;
+}
+#launches-search form {
+	display: inline-block;
+	margin-top: 40px;
+	/* border: 1px dotted yellow; */
+}
+#search-button {
+	display: inline-block;
+	margin-left: -4px;
+}
+#search-button a {
+	padding: 6px 12px;
+}
 
 /* MEDIA QUERIES 
 -------------------------*/
