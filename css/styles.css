@@ -48,11 +48,8 @@ h2 {
 	text-align: center;
 }
 h3 {
-	/*display: inline-block;*/
-	margin: 0;
 	padding: 0;
-	 /*font-size: 1.2rem; */
-
+	text-align: center;
 }
 a {
 	text-decoration: none;
@@ -101,6 +98,7 @@ nav ul li {
 	margin: 0 10px 10px 10px;
 	padding: 2px 0;
 	text-align: center;
+	border-radius: 2px;
 }
 .mission-head:first-child {
 	margin-top: 14px;
@@ -127,7 +125,7 @@ nav ul li {
 .mission-container {
 	border: 1px solid #fff;
 	border-radius: 4px;
-	margin: 0 auto;
+	margin: 0 auto 10px auto;
 	width: 95%;
 }
 .mission-container .mission-img {
@@ -143,6 +141,9 @@ nav ul li {
 	flex: 2;
 	padding: 40px 0 20px 20px;
 }
+.mission-text .mission-heading {
+	margin-right: 6px;
+}
 .mission-text p {
 	padding-top: 3px;
 	margin: 0;
@@ -155,10 +156,12 @@ nav ul li {
 	flex: 1;
 	text-align: right;
 	margin-right: 5px;
-	
 }
 .mission-value {
 	flex: 2;
+}
+#launch-links {
+	flex-wrap: nowrap;
 }
 
 /* Buttons */
@@ -172,10 +175,15 @@ nav ul li {
 	padding: 4px 5px;
 	color: #fff;
 }
-
 .info-button {
 	background-color: #06204A;
-	/* padding: 4px 5px; */
+}
+.missions-list .button {
+	flex: 1;
+	font-size: 1rem;
+}
+.missions-list .button:last-child {
+	margin-left: 24px;
 }
 
 /* Form fields */
@@ -189,7 +197,7 @@ input[type=text] {
 h1, h2, #main-navigation, #time-left span, .button, #cta-down {
 	font-family: "worksans-extralight", arial, sans-serif;
 }
-h3, .mission-head {
+h3, .mission-head, .mission-heading {
 	font-family: "worksans-regular", Arial, sans-serif;
 }
 p, input {
@@ -350,8 +358,9 @@ PAGES
 	/*border: 1px dashed lightblue; */
 }
 
-#bottom-container {
-
+#last-mission h3 {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 /* Launches
@@ -383,25 +392,21 @@ PAGES
 #launches-container {
 	flex-wrap: wrap;
 	justify-content: center;
-	height: 500px;
+	/* height: 500px; */
 }
+
 #launches-container section {
 	flex: 1;
-	display: flex;
+	height: 100%;
+}
+#launches-container .missions-list {
 	flex-direction: column;
 	min-width: 400px;
-	height: 100%;
 	margin: 0 8px;
 	border: 1px solid #fff;
 	border-radius: 4px;
 }
-#past-launches {
-	
-}
-#coming-launches {
-	
-	
-}
+
 
 /* MEDIA QUERIES 
 -------------------------*/
