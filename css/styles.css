@@ -345,6 +345,32 @@ PAGES
 #search-button a {
 	padding: 6px 12px;
 }
+#launches {
+	border: 1px dashed white;
+	width: 96%;
+	margin-top: 40px;
+}
+#launches-container {
+	flex-wrap: wrap;
+	justify-content: center;
+	height: 500px;
+}
+#launches-container section {
+	flex: 1;
+	/*width: 48%;*/
+	min-width: 400px;
+	height: 100%;
+	margin: 0 8px;
+	border: 1px solid #fff;
+	border-radius: 4px;
+}
+#past-launches {
+	
+}
+#coming-launches {
+	
+	
+}
 
 /* MEDIA QUERIES 
 -------------------------*/

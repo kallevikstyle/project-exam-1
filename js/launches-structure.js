@@ -1,8 +1,11 @@
-// Set top offset value to compensate for header height
+// Set top offset value to all sections to compensate for header height
 function setContentOffset(pageHeaderHeight) {
-    const pageSection = document.querySelector('#background-image > *');
+    const pageSection = document.querySelectorAll('#background-image > *');
     
-    pageSection.style.top = pageHeaderHeight + "px";
+    for(let i = 0; i < pageSection.length; i++) {
+    	pageSection[i].style.top = pageHeaderHeight + "px";
+    }
+    
 }
 // Find height of page header
 (function findHeaderHeight() {
