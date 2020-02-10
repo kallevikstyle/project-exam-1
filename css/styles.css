@@ -94,6 +94,36 @@ nav ul li {
 }
 
 /* Mission containers */
+.mission-head {
+	flex-wrap: nowrap;
+	background-color: #fff;
+	color: #000;
+	margin: 0 10px 10px 10px;
+	padding: 2px 0;
+	text-align: center;
+}
+.mission-head:first-child {
+	margin-top: 14px;
+}
+.mission-head:last-child {
+	margin-bottom: 10px;
+}
+.mission-head div {
+	flex: 2;
+}
+.mission-head div:first-child {
+	text-align: left;
+	margin-left: 10px;
+}
+.mission-head div:nth-child(3) {
+	text-align: right;
+
+}
+.mission-head div:last-child {
+	text-align: right;
+	margin-right: 10px;
+	flex: 1;
+}
 .mission-container {
 	border: 1px solid #fff;
 	border-radius: 4px;
@@ -159,7 +189,7 @@ input[type=text] {
 h1, h2, #main-navigation, #time-left span, .button, #cta-down {
 	font-family: "worksans-extralight", arial, sans-serif;
 }
-h3 {
+h3, .mission-head {
 	font-family: "worksans-regular", Arial, sans-serif;
 }
 p, input {
@@ -346,7 +376,7 @@ PAGES
 	padding: 6px 12px;
 }
 #launches {
-	border: 1px dashed white;
+	border: 1px dotted grey;
 	width: 96%;
 	margin-top: 40px;
 }
@@ -357,7 +387,8 @@ PAGES
 }
 #launches-container section {
 	flex: 1;
-	/*width: 48%;*/
+	display: flex;
+	flex-direction: column;
 	min-width: 400px;
 	height: 100%;
 	margin: 0 8px;
