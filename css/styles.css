@@ -58,9 +58,6 @@ a {
 #background-image {
 	background: url('../images/spacex-hero-img_1920_o72.jpg') no-repeat fixed center/cover;
 	max-width: 1920px;
-	height: 100%;
-	/*height: 1500px;*/
-	/*margin-top: -100px;*/
 }
 nav ul {
 	padding-left: 0;
@@ -86,10 +83,8 @@ nav ul li {
 }
 
 main > * {
-	/*position: relative;*/
 	width: 55%;
-	margin: 0 auto;
-	
+	margin: 0 auto;	
 }
 
 /* Mission containers */
@@ -319,6 +314,7 @@ PAGES
 	flex-direction: column;
 	justify-content: center;
 }
+
 #cta-navigation > .flex {
 	justify-content: center;
 }
@@ -330,7 +326,6 @@ PAGES
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center right;
-	/* border: 1px dotted red; */
 }
 #cta-circle {
 	width: 24%;
@@ -359,7 +354,11 @@ PAGES
 	background-repeat: no-repeat;
 	background-size: contain cover;
 	background-position: center bottom;
-	/*border: 1px dashed lightblue; */
+	/* border: 1px dashed lightblue; */
+}
+#cta-down a {
+	color: #ebe756;
+	font-size: 1.1rem;
 }
 
 #last-mission {
@@ -369,15 +368,14 @@ PAGES
 /* Launches
 ----------------*/
 #launches-search {
-	/* border: 1px dashed lime; */
-	/* margin-top: 100px; */
+	
 }
 #launches-search > div {
 	text-align: center;
 }
 #launches-search form {
 	display: inline-block;
-	margin-top: 40px;
+	margin-top: 140px;
 	/* border: 1px dotted yellow; */
 }
 #search-button {
@@ -388,14 +386,13 @@ PAGES
 	padding: 6px 12px;
 }
 #launches {
-	border: 1px dotted grey;
+	/* border: 1px dotted grey; */
 	width: 96%;
 	margin-top: 40px;
 }
 #launches-container {
 	flex-wrap: wrap;
 	justify-content: center;
-	/* height: 500px; */
 }
 
 #launches-container section {
