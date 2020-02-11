@@ -281,7 +281,7 @@ PAGES
 
 #top-container {
 	/* height is defined in index-structure.js */
-	/*height: 100vh;*/
+	height: 100vh;
 	/*min-height: 100%;*/
 	border: 1px dotted grey;
 }
