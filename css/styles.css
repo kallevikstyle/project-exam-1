@@ -428,6 +428,11 @@ PAGES
 	margin-top: 14px;
 }
 
+/* About
+--------------*/
+#about-container {
+	width: 96%;
+}
 
 
 /* MEDIA QUERIES 
