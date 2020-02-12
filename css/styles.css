@@ -86,8 +86,19 @@ main > * {
 	width: 55%;
 	margin: 0 auto;	
 }
+main > *:first-child {
+	padding-top: 140px;
+}
+.item-list {
+	flex-direction: column;
+	/*justify-content: center;*/
+	min-width: 400px;
+	margin: 0 8px;
+	border: 1px solid #fff;
+	border-radius: 4px;
+}
 
-/* Mission containers */
+/* Mission heads */
 .mission-head {
 	flex-wrap: nowrap;
 	background-color: #fff;
@@ -119,45 +130,46 @@ main > * {
 	margin-right: 10px;
 	flex: 1;
 }
-.mission-container {
+/* Item containers*/
+.item-container {
 	border: 1px solid #fff;
 	border-radius: 4px;
 	margin: 0 auto 10px auto;
 	width: 95%;
 }
-.mission-container .mission-img {
+.item-container .item-img {
 	flex: 1;
 	padding: 5px;
 }
-.mission-img img {
+.item-img img {
 	max-width: 100%;
 	max-height: 100%;
 	display: block;
 }
-.mission-container .mission-text {
+.item-container .item-details {
 	flex: 2;
 	padding: 40px 0 20px 20px;
 }
-.mission-text .mission-heading {
+.item-details .item-heading {
 	margin-right: 6px;
 }
-.mission-text p {
+.item-details p {
 	padding-top: 3px;
 	margin: 0;
 }
-.mission-text > div {
+.item-details > div {
 	display: flex;
 	flex-wrap: wrap;
 }
-.mission-heading {
+.item-heading {
 	flex: 1;
 	text-align: right;
 	margin-right: 5px;
 }
-.mission-value {
+.item-value {
 	flex: 2;
 }
-#launch-links {
+#item-buttons {
 	flex-wrap: nowrap;
 }
 
@@ -175,11 +187,11 @@ main > * {
 .info-button {
 	background-color: #06204A;
 }
-.missions-list .button {
+.item-list .button {
 	flex: 1;
 	font-size: 1rem;
 }
-.missions-list .button:last-child {
+.item-list .button:last-child {
 	margin-left: 24px;
 }
 
@@ -194,7 +206,7 @@ input[type=text] {
 h1, h2, #main-navigation, #time-left span, .button, #cta-down {
 	font-family: "worksans-extralight", arial, sans-serif;
 }
-h3, .mission-head, .mission-heading {
+h3, .mission-head, .item-heading {
 	font-family: "worksans-regular", Arial, sans-serif;
 }
 p, input {
@@ -276,6 +288,7 @@ PAGES
 
 #top-container {
 	min-height: 100vh;
+	padding-top: 0;
 	/*border: 1px dotted grey;*/
 }
 #top-container::before {
@@ -375,8 +388,7 @@ PAGES
 }
 #launches-search form {
 	display: inline-block;
-	margin-top: 140px;
-	/* border: 1px dotted yellow; */
+
 }
 #search-button {
 	display: inline-block;
@@ -399,13 +411,23 @@ PAGES
 	flex: 1;
 	height: 100%;
 }
-#launches-container .missions-list {
-	flex-direction: column;
-	min-width: 400px;
-	margin: 0 8px;
-	border: 1px solid #fff;
-	border-radius: 4px;
+
+
+/* Rockets
+---------------------*/
+#rockets-container {
+	/*border: 1px dashed white;*/
+	width: 96%;
+	min-height: 100vh;
+	/*height: 600px;*/
 }
+#rockets-container .item-list {
+	border: none;
+}
+#rockets-container .item-container {
+	margin-top: 14px;
+}
+
 
 
 /* MEDIA QUERIES 
