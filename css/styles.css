@@ -181,7 +181,7 @@ main > *:first-child {
 .button a {
 	display: block;
 	height: 100%;
-	padding: 4px 5px;
+	padding: 6px 8px;
 	color: #fff;
 }
 .info-button {
@@ -433,7 +433,19 @@ PAGES
 #about-container {
 	width: 96%;
 }
-
+#about-container .item-container {
+	position: relative;
+}
+#about-container p {
+	margin-bottom: 50px;
+}
+#about-container .button {
+	display: inline-block;
+	margin: 0 14px 14px 0;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
 
 /* MEDIA QUERIES 
 -------------------------*/
