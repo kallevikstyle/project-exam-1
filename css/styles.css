@@ -297,7 +297,7 @@ PAGES
 #top-container {
 	min-height: 100vh;
 	padding-top: 0;
-	border: 1px dotted grey;
+	/* border: 1px dotted grey; */
 }
 #top-container::before {
 	content: "\00a0";
