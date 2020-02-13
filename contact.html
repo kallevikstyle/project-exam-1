@@ -29,13 +29,37 @@
 		<!-- Main content -->
 		<main role="main">
 			<!-- Contact section -->
-			<section id="about-container">
+			<section id="contact-container">
 				<h2>Contact SpaceX</h2>
-				
 				<div class="item-container">
-					<div class="flex">
+					<!-- Contact form -->
+					<form id="contact-form">
+						<div>
+							<p>
+						     	<label for="firstname">First name:</label>
+						    </p>
+						    <input type="text" id="firstname" name="firstname">
 						
-					</div>
+						    <p>
+						     	<label for="lastname">Last name:</label>
+			     			</p>
+					        <input type="text" id="lastname" name="lastname">
+					    
+						    <p>
+						     	<label for="email">E-mail:</label>
+						    </p>
+						        <input type="email" id="email" name="email">
+						
+						    <p>
+						        <label for="message">Your message</label>
+					    	</p>
+					        	<textarea id="message" name="message" maxlength="500" rows="8"></textarea>
+				       
+				     	</div>
+				   
+				     <div id="message-submit" class="info-button button">Send message &gt;&gt;</div>
+				     
+				</form>
 				</div>
 			</section>
 		</main>
