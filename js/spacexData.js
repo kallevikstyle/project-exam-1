@@ -52,6 +52,7 @@ const sectionObjects = (function() {
         }
     };
 
+    // Convert dates to strings
     function dateConverter(date) {
         const launchDate = new Date(date);
         return launchDate.toDateString();
@@ -85,7 +86,7 @@ function displayContent(data, section) {
 (function() {
     if (sectionObjects.lastMissionSection.parentContainer) {
         console.log("It exists");
-        loadAPI("launches/next", sectionObjects.lastMissionSection);
+        loadAPI("launches/latest", sectionObjects.lastMissionSection);
         // displayContent(lastMissionSection);
 
     } else {
