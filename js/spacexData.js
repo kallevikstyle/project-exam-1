@@ -1,31 +1,9 @@
 
-// Load data from SpaceX
-function loadAPI(apiURL, targetSection) {
-    fetch('https://api.spacexdata.com/v3/' + apiURL)
-        .then(result => result.json())
-        .then((data) => {
-           getData(data, targetSection);
-        })
-        .catch(err => console.log(err));
-};
-// Receive data from API
-function getData(data, targetSection) {
-    displayContent(data, targetSection);
-    
-}
-// Display elements on page
-function displayContent(data, section) {
-    // Call function inside section object
-    section.createElements(data);
-
-}
-
-
-(function() {
-    // Object containing all data needed for section
+// Objects containing section specific data
+const sectionObjects = (function() {
+    // Last mission section (index page)
     const lastMissionSection = {
         parentContainer: document.querySelector('#last-mission .item-container'),
-        keys: ["mission_patch_small", "mission_name", "launch_date_local", ["rocket", "rocket_name"], "site_name"],
         createElements: function(data) {
             const parentContainer = document.querySelector('#last-mission .item-container'),
                 flexDiv = document.createElement('div'),
@@ -42,7 +20,7 @@ function displayContent(data, section) {
 
             // Add content to elements
             itemImg.innerHTML = `
-                <img src="https://i.picsum.photos/id/884/400/400.jpg">
+                <img src="${data.links.mission_patch_small}">
             `;
             itemDetails.innerHTML = `
                 <div>
@@ -51,22 +29,22 @@ function displayContent(data, section) {
                 </div>
                 <div>
                     <p class="item-heading">Launch:</p>
-                    <p class="item-value">01.01.2020</p>
+                    <p class="item-value">${dateConverter(data.launch_date_local)}</p>
                 </div>
                 
                 <div>
                     <p class="item-heading">Rocket:</p>
-                    <p class="item-value">Falcon 9</p>
+                    <p class="item-value">${data.rocket.rocket_name}</p>
                 </div>
                 <div>
                     <p class="item-heading">Site:</p>
-                    <p class="item-value">Sveio</p>
+                    <p class="item-value">${data.launch_site.site_name}</p>
                 </div>
             `;
             itemButton.innerHTML = `
                 <a href="#">More info &gt;&gt;</a>
             `;
-            // Appending elements to DOM
+            // Append elements to DOM
             flexDiv.appendChild(itemImg);
             flexDiv.appendChild(itemDetails);
             parentContainer.appendChild(flexDiv);
@@ -74,9 +52,40 @@ function displayContent(data, section) {
         }
     };
 
-    if (lastMissionSection) {
+    function dateConverter(date) {
+        const launchDate = new Date(date);
+        return launchDate.toDateString();
+    };
+
+    return {
+        lastMissionSection
+    }
+})();
+
+// Load API from SpaceX
+function loadAPI(apiURL, targetSection) {
+    fetch('https://api.spacexdata.com/v3/' + apiURL)
+        .then(result => result.json())
+        .then((data) => {
+           getData(data, targetSection);
+        })
+        .catch(err => console.log(err));
+};
+// Receive data from API
+function getData(data, targetSection) {
+    displayContent(data, targetSection); 
+}
+// Display elements on page
+function displayContent(data, section) {
+    // Call function inside section object
+    section.createElements(data);
+
+}
+
+(function() {
+    if (sectionObjects.lastMissionSection.parentContainer) {
         console.log("It exists");
-        loadAPI("launches/next", lastMissionSection);
+        loadAPI("launches/next", sectionObjects.lastMissionSection);
         // displayContent(lastMissionSection);
 
     } else {
