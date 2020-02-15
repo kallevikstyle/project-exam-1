@@ -55,6 +55,7 @@ const sectionObjects = (function() {
             parentContainer: document.querySelector('#countdown #time-left'),
             createElements: function(data) {
                 const parentContainer = this.parentContainer,
+                    countdownTail = document.querySelector('#countdown-tail'),
                     launchTime = new Date(data.launch_date_local).getTime();
                 // Create the timer
                 let countdown = setInterval(function() {
@@ -70,6 +71,17 @@ const sectionObjects = (function() {
                     parentContainer.innerHTML = `
                         <p><span>${days}</span> days <span>${hours}</span> hours <span>${minutes}</span> minutes <span>${seconds}</span> seconds</p>
                     `;
+
+                    // When countdown is complete
+                    if (timeLeft < 0) {
+                        clearInterval(countdown);
+                        parentContainer.innerHTML = `
+                        <p><span>${data.rocket.rocket_name.toUpperCase()} JUST LAUNCHED!</span></p>
+                    `;
+                        countdownTail.innerHTML = `
+                        <i>stay tuned for updates</i>
+                    `;
+                    }
                 }, 1000);   
             }
         };
