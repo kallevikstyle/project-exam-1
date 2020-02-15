@@ -326,6 +326,13 @@ PAGES
 #countdown #time-left span:first-child {
 	margin-left: 0;
 }
+#countdown .item-container {
+	display: none;
+	/*opacity: 0;*/
+	border-top: none;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+}
 /* CTA navigation */
 #cta-navigation {
 	/* border: 1px dashed white; */
