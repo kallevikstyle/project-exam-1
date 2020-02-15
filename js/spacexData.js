@@ -66,12 +66,10 @@ const sectionObjects = (function() {
                         hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
                         minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)),
                         seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
                     // Display countdown on page
                     parentContainer.innerHTML = `
                         <p><span>${days}</span> days <span>${hours}</span> hours <span>${minutes}</span> minutes <span>${seconds}</span> seconds</p>
                     `;
-
                     // When countdown is complete
                     if (timeLeft < 0) {
                         clearInterval(countdown);
@@ -91,7 +89,7 @@ const sectionObjects = (function() {
         const launchDate = new Date(date);
         return launchDate.toDateString();
     };
-
+    // Make objects accessible outside module
     return {
         countdownSection,
         lastMissionSection
