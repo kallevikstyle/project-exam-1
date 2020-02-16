@@ -11,16 +11,35 @@ function loadAPI(apiURL, parentContainer, sectionName) {
 function getData(data, parentContainer, sectionName) {
     // Send the data to the correct section
     switch (sectionName) {
-        case "countdown":
-            displayCountdown(data, parentContainer);
-            break;
-        case "nextMission":
-        case "lastMission":
-            displayMissionDetails(data, parentContainer);
+        case "pastLaunches":
+            displayMissionHeads(data, parentContainer);
             break;
         default:
             console.log("Error: Section not found");
     }    
+}
+// Display mission heads
+function displayMissionHeads(data, parentContainer) {
+    console.log(data);
+    let i = 0;
+    // Loop through missions in reverse order
+    for (i = data.length - 1; i > 0; i--) {
+        const missionHead = document.createElement('div');
+
+        // Assign classes to elements
+        missionHead.classList.add('mission-head');
+        missionHead.classList.add('flex');
+
+        // Add content to mission head
+        missionHead.innerHTML = `
+            <div class="mission-head-date">${dateConverter(data[i].launch_date_local)}</div>
+            <div class="mission-head-name">${data[i].mission_name}</div>
+            <div class="mission-head-rocket">${data[i].rocket.rocket_name}</div>
+            <div class="mission-head-arrow"><i class="fas fa-angle-right"></i></div>
+        `;
+        // Append mission head to container
+        parentContainer.appendChild(missionHead);
+    }
 }
 
 // Display mission details
@@ -75,14 +94,12 @@ function dateConverter(date) {
 };
 
 (function() {
-    const countdownContainer = document.querySelector('#countdown #time-left'),
-        nextMissionContainer = document.querySelector('#countdown .item-container'),
-        lastMissionContainer = document.querySelector('#last-mission .item-container');
+    const missionHeadContainer = document.querySelector('#past-launches .item-list');
     let sectionName = "";
 
-    // Check if 'next mission container' is present
-    if (nextMissionContainer) {
-        sectionName = "nextMission";
-        loadAPI("launches/next", nextMissionContainer, sectionName);
+    // Check if 'past-launches' section is present
+    if (missionHeadContainer) {
+        sectionName = "pastLaunches";
+        loadAPI("launches/past", missionHeadContainer, sectionName);
     }
 })();
