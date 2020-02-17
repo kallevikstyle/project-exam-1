@@ -145,6 +145,7 @@ main > *:first-child {
 	margin-right: 10px;
 	flex: 1;
 }
+
 /* Item containers*/
 .item-container {
 	border: 1px solid #fff;
@@ -190,6 +191,7 @@ main > *:first-child {
 .button {
 	font-size: 1.2rem;
 	text-align: center;
+	cursor: pointer;
 }
 .button a {
 	display: block;
@@ -204,8 +206,11 @@ main > *:first-child {
 	flex: 1;
 	font-size: 1rem;
 }
-.item-list .button:last-child {
+.item-list #item-buttons .button:last-child {
 	margin-left: 24px;
+}
+.item-list .load-more-button {
+
 }
 
 /* Form fields */
@@ -225,7 +230,7 @@ form p {
 h1, h2, #main-navigation, #time-left span, .button, #cta-down {
 	font-family: "worksans-extralight", arial, sans-serif;
 }
-h3, .mission-head, .item-heading {
+h3, .mission-head, .item-heading, .item-list .load-more-button {
 	font-family: "worksans-regular", Arial, sans-serif;
 }
 p, input {

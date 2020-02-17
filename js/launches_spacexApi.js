@@ -1,50 +1,106 @@
+// Loaded launches MODULE
+const loadedLaunches = (function() {
+    let pastLaunches = {
+        apiURL: "launches/past",
+        parentContainer: document.querySelector('#past-launches .item-list'),
+        sectionName: "pastLaunches",
+        initialLoadAmount: 25,
+        loadIndex: 0,
+        loadMore: function() {
+            // Call function to create button
+            createLoadMoreButton(this.parentContainer);
+        }
+    },
+        comingLaunches = {
+            apiURL: "launches/upcoming",
+            parentContainer: document.querySelector('#coming-launches .item-list'),
+            sectionName: "comingLaunches",
+            initialLoadAmount: 25,
+            loadIndex: 0,
+            loadMore: function() {
+                // Call function to create button
+                createLoadMoreButton(this.parentContainer);
+            }
+        };
+    // Create a load more button
+    function createLoadMoreButton(parentContainer) {
+        // Add a load more button
+        const loadMoreButton = document.createElement('div');
+        // Add classes to button
+        loadMoreButton.classList.add('info-button');
+        loadMoreButton.classList.add('button');
+        loadMoreButton.classList.add('load-more-button');
+        // Add content to button
+        loadMoreButton.innerHTML = `
+            <a>Load more <i class="fas fa-angle-down"></i></a>
+        `;
+        // Append button to container
+        parentContainer.appendChild(loadMoreButton);
+        // Event listener for button
+        loadMoreButton.addEventListener('click', function() {
+            console.log('CLICKED');
+        });
+    }
+
+    return {
+        pastLaunches,
+        comingLaunches
+    }
+})();
+
 // Load API from SpaceX
-function loadAPI(apiURL, parentContainer, sectionName) {
-    fetch('https://api.spacexdata.com/v3/' + apiURL)
+function loadAPI(loadedLaunches) {
+    fetch('https://api.spacexdata.com/v3/' + loadedLaunches.apiURL)
         .then(result => result.json())
         .then((data) => {
-           getData(data, parentContainer, sectionName);
+           getData(data, loadedLaunches);
         })
         .catch(err => console.log(err));
 };
 // Receive data from API
-function getData(data, parentContainer, sectionName) {
+function getData(data, loadedLaunches) {
+    console.log(data);
     // Send data to the correct section
-    switch (sectionName) {
+    switch (loadedLaunches.sectionName) {
         case "pastLaunches":
-            displayMissionHeads(data.reverse(), parentContainer);
+            displayMissionHeads(data.reverse(), loadedLaunches);
             break;
         case "comingLaunches":
-            displayMissionHeads(data, parentContainer);
+            displayMissionHeads(data, loadedLaunches);
             break;
         default:
             console.log("Error: Section not found");
     }    
 }
 // Display mission heads
-function displayMissionHeads(data, parentContainer) {
-    console.log(data);
+function displayMissionHeads(data, loadedLaunches) {
     let i = 0;
     // Loop through missions data array
-    for (i; i < data.length; i++) {
-        const missionWrapper = document.createElement('div'),
-            missionHead = document.createElement('div');
+    for (i; i < data.length && i <= loadedLaunches.initialLoadAmount; i++) {
+        if (i < loadedLaunches.initialLoadAmount) {
+            const missionWrapper = document.createElement('div'),
+                missionHead = document.createElement('div');
 
-        // Assign classes to elements
-        missionWrapper.classList.add('mission-wrapper');
-        missionHead.classList.add('mission-head');
-        missionHead.classList.add('flex');
+            // Assign classes to elements
+            missionWrapper.classList.add('mission-wrapper');
+            missionHead.classList.add('mission-head');
+            missionHead.classList.add('flex');
 
-        // Add content to mission head
-        missionHead.innerHTML = `
-            <div class="mission-head-date">${dateConverterShort(data[i].launch_date_local)}</div>
-            <div class="mission-head-name">${data[i].mission_name}</div>
-            <div class="mission-head-rocket">${data[i].rocket.rocket_name}</div>
-            <div class="mission-head-arrow"><i class="fas fa-angle-right"></i></div>
-        `;
-        // Append mission head to container
-        missionWrapper.appendChild(missionHead);
-        parentContainer.appendChild(missionWrapper);
+            // Add content to mission head
+            missionHead.innerHTML = `
+                <div class="mission-head-date">${dateConverterShort(data[i].launch_date_local)}</div>
+                <div class="mission-head-name">${data[i].mission_name}</div>
+                <div class="mission-head-rocket">${data[i].rocket.rocket_name}</div>
+                <div class="mission-head-arrow"><i class="fas fa-angle-right"></i></div>
+            `;
+            // Append mission head to container
+            missionWrapper.appendChild(missionHead);
+            loadedLaunches.parentContainer.appendChild(missionWrapper);
+        } else {
+            // Update 'loadedLaunches' with array index
+            loadedLaunches.loadIndex = data.indexOf(data[i]);
+            loadedLaunches.loadMore();
+        }
     }
 }
 
@@ -116,19 +172,16 @@ function dateConverterShort(date) {
 };
 
 (function() {
-    const pastLaunchesContainer = document.querySelector('#past-launches .item-list'),
-        comingLaunchesContainer = document.querySelector('#coming-launches .item-list');
-    let sectionName = "";
-
     // Check if 'past-launches' section is present
-    if (pastLaunchesContainer) {
+    if (loadedLaunches.pastLaunches.parentContainer) {
         sectionName = "pastLaunches";
-        loadAPI("launches/past", pastLaunchesContainer, sectionName);
+        loadAPI(loadedLaunches.pastLaunches);
+
     }
     // Check if 'upcoming-launches' section is present
-    if (comingLaunchesContainer) {
+    if (loadedLaunches.comingLaunches.parentContainer) {
         sectionName = "comingLaunches";
-        loadAPI("launches/upcoming", comingLaunchesContainer, sectionName);
+        loadAPI(loadedLaunches.comingLaunches);
     }
 
 })();
