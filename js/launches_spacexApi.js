@@ -9,6 +9,7 @@ const loadedLaunches = (function() {
         loadMore: function() {
             // Call function to create button
             createLoadMoreButton(this.parentContainer);
+            this.loadMoreButton = document.querySelector('#past-launches .load-more-button');
         }
     },
         comingLaunches = {
@@ -20,6 +21,7 @@ const loadedLaunches = (function() {
             loadMore: function() {
                 // Call function to create button
                 createLoadMoreButton(this.parentContainer);
+                this.loadMoreButton = document.querySelector('#coming-launches .load-more-button');
             }
         };
     // Create a load more button
@@ -36,10 +38,6 @@ const loadedLaunches = (function() {
         `;
         // Append button to container
         parentContainer.appendChild(loadMoreButton);
-        // Event listener for button
-        loadMoreButton.addEventListener('click', function() {
-            console.log('CLICKED');
-        });
     }
 
     return {
@@ -96,10 +94,17 @@ function displayMissionHeads(data, loadedLaunches) {
             // Append mission head to container
             missionWrapper.appendChild(missionHead);
             loadedLaunches.parentContainer.appendChild(missionWrapper);
-        } else {
-            // Update 'loadedLaunches' with array index
+        } else {            
+            // Update module with array index for next item
             loadedLaunches.loadIndex = data.indexOf(data[i]);
+            // Create a 'load more' button from module object
             loadedLaunches.loadMore();
+            // Event listener for button
+            loadedLaunches.loadMoreButton.addEventListener('click', function() {
+                console.log('CLICKED');
+            });
+
+            
         }
     }
 }
