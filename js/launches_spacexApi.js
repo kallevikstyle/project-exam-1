@@ -12,8 +12,8 @@ const loadedLaunches = (function() {
             createLoadMoreButton(this.parentContainer);
             this.loadMoreButton = document.querySelector('#past-launches .load-more-button');
         },
-        loadData: function() {
-            return this.allData.reverse();
+        removeLoadMore: function() {
+            removeLoadMoreButton(this.parentContainer, this.loadMoreButton);
         }
     },
         comingLaunches = {
@@ -28,8 +28,8 @@ const loadedLaunches = (function() {
                 createLoadMoreButton(this.parentContainer);
                 this.loadMoreButton = document.querySelector('#coming-launches .load-more-button');
             },
-            loadData: function() {
-                return this.allData;
+            removeLoadMore: function() {
+                removeLoadMoreButton(this.parentContainer, this.loadMoreButton);
             }
         };
     // Create a load more button
@@ -47,6 +47,10 @@ const loadedLaunches = (function() {
         // Append button to container
         parentContainer.appendChild(loadMoreButton);
     }
+    // Remove loadMoreButton
+    function removeLoadMoreButton(parentContainer, button) {
+        parentContainer.removeChild(button);
+    }
 
     return {
         pastLaunches,
@@ -60,7 +64,11 @@ function loadAPI(loadedLaunches) {
         .then(result => result.json())
         .then((data) => {
             // Send data to section object and call displayMissionHeads
-            loadedLaunches.allData = data;
+            if (loadedLaunches.sectionName === "pastLaunches") {
+                loadedLaunches.allData = data.reverse();
+            } else {
+                loadedLaunches.allData = data;
+            }
             displayMissionHeads(loadedLaunches);
         })
         .catch(err => console.log(err));
@@ -83,8 +91,12 @@ function getData(data, loadedLaunches) {
 }
 // Display mission heads
 function displayMissionHeads(loadedLaunches) {
-    let data = loadedLaunches.loadData(),
+    let data = loadedLaunches.allData,
         i = loadedLaunches.loadIndex;
+    // Remove load more button if it exists
+    if (loadedLaunches.loadMoreButton) {
+        loadedLaunches.removeLoadMore();
+    }
     // Loop through missions data array
     for (i; i < data.length && i <= loadedLaunches.loadAmount; i++) {
         if (i < loadedLaunches.loadAmount) {
@@ -106,17 +118,18 @@ function displayMissionHeads(loadedLaunches) {
             // Append mission head to container
             missionWrapper.appendChild(missionHead);
             loadedLaunches.parentContainer.appendChild(missionWrapper);
-        } else if (i === loadedLaunches.loadAmount) {            
-            // Update module with array index for next item
-            loadedLaunches.loadIndex = data.indexOf(data[i]);
+        } else if (i === loadedLaunches.loadAmount && loadedLaunches.loadAmount < data.length) {            
             // Create a 'load more' button from module object
             loadedLaunches.loadMore();
             // Event listener for button
             loadedLaunches.loadMoreButton.addEventListener('click', function() {
-                loadAPI(loadedLaunches);
-            });
-
-            
+                // Update module with array index and loadAmount
+                loadedLaunches.loadIndex = data.indexOf(data[i]);
+                loadedLaunches.loadAmount = loadedLaunches.loadAmount + loadedLaunches.loadIndex;
+                displayMissionHeads(loadedLaunches);
+            }); 
+        } else if (loadedLaunches.loadAmount === data.length) {
+            document.write('Nothing more to show');
         }
     }
 }
