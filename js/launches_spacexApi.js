@@ -91,15 +91,17 @@ function getData(data, loadedLaunches) {
 }
 // Display mission heads
 function displayMissionHeads(loadedLaunches) {
-    let data = loadedLaunches.allData,
-        i = loadedLaunches.loadIndex;
+    let i = loadedLaunches.loadIndex;
+    const amount = loadedLaunches.loadAmount + i,
+        data = loadedLaunches.allData;
+
     // Remove load more button if it exists
     if (loadedLaunches.loadMoreButton) {
         loadedLaunches.removeLoadMore();
     }
     // Loop through missions data array
-    for (i; i < data.length && i <= loadedLaunches.loadAmount; i++) {
-        if (i < loadedLaunches.loadAmount) {
+    for (i; i < data.length && i <= amount; i++) {
+        if (i < amount) {
             const missionWrapper = document.createElement('div'),
                 missionHead = document.createElement('div');
 
@@ -118,18 +120,15 @@ function displayMissionHeads(loadedLaunches) {
             // Append mission head to container
             missionWrapper.appendChild(missionHead);
             loadedLaunches.parentContainer.appendChild(missionWrapper);
-        } else if (i === loadedLaunches.loadAmount && loadedLaunches.loadAmount < data.length) {            
+        } else if (i === amount && amount < data.length) {            
             // Create a 'load more' button from module object
             loadedLaunches.loadMore();
             // Event listener for button
             loadedLaunches.loadMoreButton.addEventListener('click', function() {
-                // Update module with array index and loadAmount
+                // Update module with array index
                 loadedLaunches.loadIndex = data.indexOf(data[i]);
-                loadedLaunches.loadAmount = loadedLaunches.loadAmount + loadedLaunches.loadIndex;
                 displayMissionHeads(loadedLaunches);
             }); 
-        } else if (loadedLaunches.loadAmount === data.length) {
-            document.write('Nothing more to show');
         }
     }
 }
