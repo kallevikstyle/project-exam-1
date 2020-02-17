@@ -101,6 +101,22 @@ main > *:first-child {
 }
 
 /* Mission heads */
+.mission-wrapper {
+	/*margin: 0;*/
+	/*padding: 0;*/
+}
+.mission-wrapper:first-child {
+	margin-top: 14px;
+}
+.mission-wrapper:last-child {
+	margin-bottom: 10px;
+}
+.mission-wrapper:first-child .mission-head {
+	background-color: #000;
+	background-color: transparent;
+	color: #fff;
+	border-bottom: 1px solid #fff;
+}
 .mission-head {
 	flex-wrap: nowrap;
 	background-color: #fff;
@@ -110,24 +126,25 @@ main > *:first-child {
 	text-align: center;
 	border-radius: 2px;
 }
-.mission-head:first-child {
-	margin-top: 14px;
-}
-.mission-head:last-child {
-	margin-bottom: 10px;
-}
+
 .mission-head div {
-	flex: 2;
-}
-.mission-head div:first-child {
-	text-align: left;
-	margin-left: 10px;
-}
-.mission-head div:nth-child(3) {
-	text-align: right;
+	/*flex: 10;*/
 
 }
-.mission-head div:last-child {
+.mission-head .mission-head-date {
+	text-align: left;
+	margin-left: 10px;
+	flex: 7;
+}
+.mission-head .mission-head-name {
+	text-align: left;
+	flex: 14;
+}
+.mission-head .mission-head-rocket {
+	text-align: left;
+	flex: 6;
+}
+.mission-head .mission-head-arrow {
 	text-align: right;
 	margin-right: 10px;
 	flex: 1;
