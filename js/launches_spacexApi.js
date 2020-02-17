@@ -1,27 +1,35 @@
 // Loaded launches MODULE
 const loadedLaunches = (function() {
     let pastLaunches = {
+        allData: [],
         apiURL: "launches/past",
         parentContainer: document.querySelector('#past-launches .item-list'),
         sectionName: "pastLaunches",
-        initialLoadAmount: 25,
+        loadAmount: 25,
         loadIndex: 0,
         loadMore: function() {
             // Call function to create button
             createLoadMoreButton(this.parentContainer);
             this.loadMoreButton = document.querySelector('#past-launches .load-more-button');
+        },
+        loadData: function() {
+            return this.allData.reverse();
         }
     },
         comingLaunches = {
+            allData: [],
             apiURL: "launches/upcoming",
             parentContainer: document.querySelector('#coming-launches .item-list'),
             sectionName: "comingLaunches",
-            initialLoadAmount: 25,
+            loadAmount: 25,
             loadIndex: 0,
             loadMore: function() {
                 // Call function to create button
                 createLoadMoreButton(this.parentContainer);
                 this.loadMoreButton = document.querySelector('#coming-launches .load-more-button');
+            },
+            loadData: function() {
+                return this.allData;
             }
         };
     // Create a load more button
@@ -45,19 +53,22 @@ const loadedLaunches = (function() {
         comingLaunches
     }
 })();
-
+// -------- FUNCTIONS --------------
 // Load API from SpaceX
 function loadAPI(loadedLaunches) {
     fetch('https://api.spacexdata.com/v3/' + loadedLaunches.apiURL)
         .then(result => result.json())
         .then((data) => {
-           getData(data, loadedLaunches);
+            // Send data to section object and call displayMissionHeads
+            loadedLaunches.allData = data;
+            displayMissionHeads(loadedLaunches);
         })
         .catch(err => console.log(err));
 };
 // Receive data from API
 function getData(data, loadedLaunches) {
     console.log(data);
+    
     // Send data to the correct section
     switch (loadedLaunches.sectionName) {
         case "pastLaunches":
@@ -71,11 +82,12 @@ function getData(data, loadedLaunches) {
     }    
 }
 // Display mission heads
-function displayMissionHeads(data, loadedLaunches) {
-    let i = 0;
+function displayMissionHeads(loadedLaunches) {
+    let data = loadedLaunches.loadData(),
+        i = loadedLaunches.loadIndex;
     // Loop through missions data array
-    for (i; i < data.length && i <= loadedLaunches.initialLoadAmount; i++) {
-        if (i < loadedLaunches.initialLoadAmount) {
+    for (i; i < data.length && i <= loadedLaunches.loadAmount; i++) {
+        if (i < loadedLaunches.loadAmount) {
             const missionWrapper = document.createElement('div'),
                 missionHead = document.createElement('div');
 
@@ -94,14 +106,14 @@ function displayMissionHeads(data, loadedLaunches) {
             // Append mission head to container
             missionWrapper.appendChild(missionHead);
             loadedLaunches.parentContainer.appendChild(missionWrapper);
-        } else {            
+        } else if (i === loadedLaunches.loadAmount) {            
             // Update module with array index for next item
             loadedLaunches.loadIndex = data.indexOf(data[i]);
             // Create a 'load more' button from module object
             loadedLaunches.loadMore();
             // Event listener for button
             loadedLaunches.loadMoreButton.addEventListener('click', function() {
-                console.log('CLICKED');
+                loadAPI(loadedLaunches);
             });
 
             
