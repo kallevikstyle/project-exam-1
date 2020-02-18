@@ -7,6 +7,11 @@ const loadedLaunches = (function() {
         sectionName: "pastLaunches",
         loadAmount: 25,
         loadIndex: 0,
+        getData: function(data) {
+            // Sort array in descending order
+            data.sort((a, b) => (a.launch_date_local > b.launch_date_local) ? -1 : 1);
+            this.allData = data;
+        },
         loadMore: function() {
             // Call function to create button
             createLoadMoreButton(this.parentContainer);
@@ -23,6 +28,12 @@ const loadedLaunches = (function() {
             sectionName: "comingLaunches",
             loadAmount: 25,
             loadIndex: 0,
+            getData: function(data) {
+                let unknownDates = [];
+                // Sort array in ascending order
+                data.sort((a, b) => (a.launch_date_local > b.launch_date_local) ? 1 : -1);
+                this.allData = data;
+            },
             loadMore: function() {
                 // Call function to create button
                 createLoadMoreButton(this.parentContainer);
@@ -64,11 +75,7 @@ function loadAPI(loadedLaunches) {
         .then(result => result.json())
         .then((data) => {
             // Send data to section object and call displayMissionHeads
-            if (loadedLaunches.sectionName === "pastLaunches") {
-                loadedLaunches.allData = data.reverse();
-            } else {
-                loadedLaunches.allData = data;
-            }
+            loadedLaunches.getData(data);
             displayMissionHeads(loadedLaunches);
         })
         .catch(err => console.log(err));
