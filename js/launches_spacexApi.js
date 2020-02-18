@@ -105,8 +105,9 @@ function displayMissionHeads(loadedLaunches) {
             const missionWrapper = document.createElement('div'),
                 missionHead = document.createElement('div');
 
-            // Assign classes to elements
+            // Assign classes and id to elements
             missionWrapper.classList.add('mission-wrapper');
+            missionWrapper.id = `flight${data[i].flight_number}`;
             missionHead.classList.add('mission-head');
             missionHead.classList.add('flex');
 
@@ -120,6 +121,11 @@ function displayMissionHeads(loadedLaunches) {
             // Append mission head to container
             missionWrapper.appendChild(missionHead);
             loadedLaunches.parentContainer.appendChild(missionWrapper);
+            // Add event listener to mission head
+            missionHead.addEventListener('click', function() {
+                // NEED TO TOGGLE OPEN AND CLOSE, AND ARROW DOWN AND SIDE             
+                displayMissionDetails(data, missionWrapper);
+            });
         } else if (i === amount && amount < data.length) {            
             // Create a 'load more' button from module object
             loadedLaunches.loadMore();
@@ -133,14 +139,21 @@ function displayMissionHeads(loadedLaunches) {
     }
 }
 
-// Display mission details
+// Display mission details in missionWrapper with corresponding ID
 function displayMissionDetails(data, parentContainer) {
-    const flexDiv = document.createElement('div'),
-    itemImg = document.createElement('div'),
-    itemDetails = document.createElement('div'),
-    itemButton = document.createElement('div');
+    const flightNumber = parseInt(parentContainer.id.match(/\d+/g)[0]),
+        launch = data.filter(function(data) {
+            return data.flight_number === flightNumber;
+        }),
+        itemContainer = document.createElement('div'),
+        flexDiv = document.createElement('div'),
+        itemImg = document.createElement('div'),
+        itemDetails = document.createElement('div'),
+        itemButton = document.createElement('div');
 
+    removeOpenItemContainer();
     // Assigning classes to elements
+    itemContainer.classList.add('item-container');
     flexDiv.classList.add('flex');
     itemImg.classList.add('item-img');
     itemDetails.classList.add('item-details');
@@ -149,24 +162,24 @@ function displayMissionDetails(data, parentContainer) {
 
     // Add content to elements
     itemImg.innerHTML = `
-        <img src="${data.links.mission_patch_small}">
+        <img src="${launch[0].links.mission_patch_small}">
     `;
     itemDetails.innerHTML = `
         <div>
             <p class="item-heading">Mission:</p>
-            <p class="item-value">${data.mission_name}</p>
+            <p class="item-value">${launch[0].mission_name}</p>
         </div>
         <div>
             <p class="item-heading">Launch:</p>
-            <p class="item-value">${dateConverterLong(data.launch_date_local)}</p>
+            <p class="item-value">${dateConverterLong(launch[0].launch_date_local)}</p>
         </div>
         <div>
             <p class="item-heading">Rocket:</p>
-            <p class="item-value">${data.rocket.rocket_name}</p>
+            <p class="item-value">${launch[0].rocket.rocket_name}</p>
         </div>
         <div>
             <p class="item-heading">Site:</p>
-            <p class="item-value">${data.launch_site.site_name}</p>
+            <p class="item-value">${launch[0].launch_site.site_name}</p>
         </div>
     `;
     itemButton.innerHTML = `
@@ -175,9 +188,19 @@ function displayMissionDetails(data, parentContainer) {
     // Append elements to DOM
     flexDiv.appendChild(itemImg);
     flexDiv.appendChild(itemDetails);
-    parentContainer.appendChild(flexDiv);
-    parentContainer.appendChild(itemButton);
+    itemContainer.appendChild(flexDiv);
+    itemContainer.appendChild(itemButton);
+    parentContainer.appendChild(itemContainer);
 }
+// Remove any open item containers
+function removeOpenItemContainer() {
+    const itemContainers = document.getElementsByClassName('item-container');
+    
+    for (let i = 0; i < itemContainers.length; i++) {
+        itemContainers[i].parentNode.removeChild(itemContainers[i]);
+    }
+}
+
 // Convert dates to strings
 function dateConverterLong(date) {
     const launchDate = new Date(date);
