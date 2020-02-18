@@ -290,19 +290,38 @@ function dateConverterShort(date) {
     }
 
     return day + "." + month + "." + year;
-};
+}
+function performSearch(searchString) {
+    console.log(searchString);
+}
 
 (function() {
+    const searchField = document.querySelector('#search-field'),
+        searchButton = document.querySelector('#search-button');
+
+    
+
     // Check if 'past-launches' section is present
     if (loadedLaunches.pastLaunches.parentContainer) {
-        sectionName = "pastLaunches";
         loadAPI(loadedLaunches.pastLaunches);
-
     }
     // Check if 'upcoming-launches' section is present
     if (loadedLaunches.comingLaunches.parentContainer) {
-        sectionName = "comingLaunches";
         loadAPI(loadedLaunches.comingLaunches);
     }
+
+    // Search event listeners
+    // -----------------------
+    searchButton.addEventListener('click', function() {
+        if (searchField.value) {
+            performSearch(searchField.value);
+        }
+    });
+    searchField.addEventListener('keypress', function(e) {
+        if (searchField.value && e.keyCode === 13) {
+            e.preventDefault();
+            performSearch(searchField.value);
+        }
+    });
 
 })();
