@@ -57,6 +57,13 @@ function displayMissionPreview(data, parentContainer) {
     itemImg = document.createElement('div'),
     itemDetails = document.createElement('div'),
     itemButton = document.createElement('div');
+    let missionPatch = "";
+    // Load fallback image if not present in API
+    if (!data.links.mission_patch_small) {
+        missionPatch = "images/rocket_fallback.png";
+    } else {
+        missionPatch = data.links.mission_patch_small;
+    }
 
     // Assigning classes to elements
     flexDiv.classList.add('flex');
@@ -67,7 +74,7 @@ function displayMissionPreview(data, parentContainer) {
 
     // Add content to elements
     itemImg.innerHTML = `
-        <img src="${data.links.mission_patch_small}">
+        <img src="${missionPatch}">
     `;
     itemDetails.innerHTML = `
         <div>

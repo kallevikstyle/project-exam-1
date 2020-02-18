@@ -75,7 +75,7 @@ function loadAPI(loadedLaunches) {
 };
 // Receive data from API
 function getData(data, loadedLaunches) {
-    console.log(data);
+    
     
     // Send data to the correct section
     switch (loadedLaunches.sectionName) {
@@ -95,6 +95,7 @@ function displayMissionHeads(loadedLaunches) {
     const amount = loadedLaunches.loadAmount + i,
         data = loadedLaunches.allData;
 
+    console.log(data);
     // Remove load more button if it exists
     if (loadedLaunches.loadMoreButton) {
         loadedLaunches.removeLoadMore();
@@ -150,7 +151,14 @@ function displayMissionDetails(data, parentContainer) {
         itemImg = document.createElement('div'),
         itemDetails = document.createElement('div'),
         itemButton = document.createElement('div');
-
+    let missionPatch = "";
+    // Load fallback image if not present in API
+    if (!launch[0].links.mission_patch_small) {
+        missionPatch = "images/rocket_fallback.png";
+    } else {
+        missionPatch = launch[0].links.mission_patch_small;
+    }
+    // Close any open item containers
     removeOpenItemContainer();
     // Assigning classes to elements
     itemContainer.classList.add('item-container');
@@ -160,9 +168,10 @@ function displayMissionDetails(data, parentContainer) {
     itemButton.classList.add('info-button');
     itemButton.classList.add('button');
 
+
     // Add content to elements
     itemImg.innerHTML = `
-        <img src="${launch[0].links.mission_patch_small}">
+        <img src=${missionPatch}>
     `;
     itemDetails.innerHTML = `
         <div>
