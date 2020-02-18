@@ -42,6 +42,15 @@ const loadedLaunches = (function() {
             removeLoadMore: function() {
                 removeLoadMoreButton(this.parentContainer, this.loadMoreButton);
             }
+        },
+        searchCategories = {
+            missionName: "mission_name",
+            flightNumber: "flight_number",
+            rocket: ["rocket", "rocket_id", "rocket_name"],
+            launchSite: ["launch_site", "site_name", "site_name_long"],
+            //details: "details",
+            crew: "crew"
+
         };
     // Create a load more button
     function createLoadMoreButton(parentContainer) {
@@ -65,7 +74,8 @@ const loadedLaunches = (function() {
 
     return {
         pastLaunches,
-        comingLaunches
+        comingLaunches,
+        searchCategories
     }
 })();
 // -------- FUNCTIONS --------------
@@ -134,7 +144,7 @@ function displayMissionHeads(loadedLaunches, data) {
             loadedLaunches.loadMoreButton.addEventListener('click', function() {
                 // Update module with array index
                 loadedLaunches.loadIndex = data.indexOf(data[i]);
-                displayMissionHeads(loadedLaunches);
+                displayMissionHeads(loadedLaunches, data);
             }); 
         }
     }
@@ -290,21 +300,53 @@ function dateConverterShort(date) {
 
     return day + "." + month + "." + year;
 }
+// Search function
+//-------------------
 function performSearch(searchString) {
     console.log(searchString);
     const searchPattern = new RegExp(searchString, 'i'),
         pastLaunches = loadedLaunches.pastLaunches.allData,
         comingLaunches = loadedLaunches.comingLaunches.allData;
-    let searchResult = "";
+    let tempResult = [],
+        searchResults = [];
 
-    
-    searchResult = pastLaunches.filter(function(pastLaunches) {
-        // LOOP THROUGH ALL DATA ATTRIBUTES AND ADD RESULTS TO ARRAY
+    // Update searchResults with results from each category
+    // Mission name
+    tempResult = pastLaunches.filter(function(pastLaunches) {
         return searchPattern.test(pastLaunches.mission_name);
+    });      
+    searchResults = searchResults.concat(tempResult);
+    // Flight number
+    tempResult = pastLaunches.filter(function(pastLaunches) {
+        return searchPattern.test(pastLaunches.flight_number);
+    });      
+    searchResults = searchResults.concat(tempResult);
+     // Rocket
+    tempResult = pastLaunches.filter(function(pastLaunches) {
+        return searchPattern.test(pastLaunches.rocket.rocket_name);
     });
-    
-    console.log(searchResult);
+    searchResults = searchResults.concat(tempResult);
+    // launch site short and long
+    tempResult = pastLaunches.filter(function(pastLaunches) {
+        return searchPattern.test(pastLaunches.launch_site.site_name);
+    });      
+    searchResults = searchResults.concat(tempResult);
+    tempResult = pastLaunches.filter(function(pastLaunches) {
+        return searchPattern.test(pastLaunches.launch_site.site_name_long);
+    });
+    searchResults = searchResults.concat(tempResult);
+    // Crew
+    tempResult = pastLaunches.filter(function(pastLaunches) {
+        return searchPattern.test(pastLaunches.crew);
+    });      
+    searchResults = searchResults.concat(tempResult);
+    // Details
+    tempResult = pastLaunches.filter(function(pastLaunches) {
+        return searchPattern.test(pastLaunches.details);
+    });      
+    searchResults = searchResults.concat(tempResult);
 
+    loadedLaunches.pastLaunches.searchResult = searchResults;
 }
 
 (function() {
