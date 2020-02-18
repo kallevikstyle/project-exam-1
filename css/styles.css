@@ -455,6 +455,7 @@ PAGES
 }
 #launches-container .item-container h4 {
 	font-size: 1.4rem;
+	padding: 0 10px;
 }
 #launches-container .item-container .button {
 	/*font-size: 1.2rem;*/
