@@ -73,22 +73,7 @@ function loadAPI(loadedLaunches) {
         })
         .catch(err => console.log(err));
 };
-// Receive data from API
-function getData(data, loadedLaunches) {
-    
-    
-    // Send data to the correct section
-    switch (loadedLaunches.sectionName) {
-        case "pastLaunches":
-            displayMissionHeads(data.reverse(), loadedLaunches);
-            break;
-        case "comingLaunches":
-            displayMissionHeads(data, loadedLaunches);
-            break;
-        default:
-            console.log("Error: Section not found");
-    }    
-}
+
 // Display mission heads
 function displayMissionHeads(loadedLaunches) {
     let i = loadedLaunches.loadIndex;
@@ -122,11 +107,17 @@ function displayMissionHeads(loadedLaunches) {
             // Append mission head to container
             missionWrapper.appendChild(missionHead);
             loadedLaunches.parentContainer.appendChild(missionWrapper);
-            // Add event listener to mission head
+            
+            // Event listener to open and close mission details container
             missionHead.addEventListener('click', function() {
-                // NEED TO TOGGLE OPEN AND CLOSE, AND ARROW DOWN AND SIDE             
-                displayMissionDetails(data, missionWrapper);
+                const itemContainer = missionWrapper.querySelector('.item-container');
+                if (itemContainer) {
+                    removeOpenItemContainer();
+                } else {
+                    displayMissionDetails(data, missionWrapper);
+                }
             });
+            // loadedLaunches.toggleMissionDetails(missionHead);
         } else if (i === amount && amount < data.length) {            
             // Create a 'load more' button from module object
             loadedLaunches.loadMore();
@@ -200,6 +191,12 @@ function displayMissionDetails(data, parentContainer) {
     itemContainer.appendChild(flexDiv);
     itemContainer.appendChild(itemButton);
     parentContainer.appendChild(itemContainer);
+    
+    // Add event listener to close mission details container
+    // missionHead.addEventListener('click', function() {       
+    //     removeOpenItemContainer();
+    // });
+
 }
 // Remove any open item containers
 function removeOpenItemContainer() {
