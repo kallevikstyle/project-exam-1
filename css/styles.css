@@ -48,7 +48,7 @@ h2 {
 	font-size: 1.4rem;
 	text-align: center;
 }
-h3 {
+h3, h4 {
 	padding: 0;
 	text-align: center;
 }
@@ -165,7 +165,7 @@ main > *:first-child {
 }
 .item-container .item-details {
 	flex: 2;
-	padding: 40px 0 20px 20px;
+	padding: 20px 10px;
 }
 .item-details p {
 	padding-top: 3px;
@@ -183,6 +183,13 @@ main > *:first-child {
 .item-details .item-value {
 	flex: 2;
 	text-align: left;
+}
+.item-container .mission-description {
+	padding: 0 10px;
+}
+.item-container .mission-description p {
+	max-width: 600px;
+	margin: 10px auto;
 }
 #item-buttons {
 	flex-wrap: nowrap;
@@ -207,11 +214,11 @@ main > *:first-child {
 	flex: 1;
 	font-size: 1rem;
 }
-.item-list #item-buttons .button:last-child {
+.item-list #item-buttons .button:nth-child(2) {
 	margin-left: 24px;
 }
-.item-list .load-more-button {
-
+.item-list #item-buttons i {
+	font-size: .8rem;
 }
 
 /* Form fields */
@@ -231,7 +238,7 @@ form p {
 h1, h2, #main-navigation, #time-left span, .button, #cta-down {
 	font-family: "worksans-extralight", arial, sans-serif;
 }
-h3, .mission-head, .item-heading, .item-list .load-more-button {
+h3, h4, .mission-head, .item-heading, .item-list .load-more-button, #item-buttons .button {
 	font-family: "worksans-regular", Arial, sans-serif;
 }
 p, input {
@@ -443,8 +450,15 @@ PAGES
 	flex: 1;
 	height: 100%;
 }
-
-
+#launches-container .item-container {
+	font-size: 1.2rem;
+}
+#launches-container .item-container h4 {
+	font-size: 1.4rem;
+}
+#launches-container .item-container .button {
+	/*font-size: 1.2rem;*/
+}
 /* Rockets
 ---------------------*/
 #rockets-container {

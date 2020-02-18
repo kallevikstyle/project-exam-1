@@ -90,6 +90,9 @@ function displayMissionHeads(loadedLaunches) {
         if (i < amount) {
             const missionWrapper = document.createElement('div'),
                 missionHead = document.createElement('div');
+            let launchDate = null;
+            // Check if launch date is confirmed
+                launchDate = confirmDate(data[i]);
 
             // Assign classes and id to elements
             missionWrapper.classList.add('mission-wrapper');
@@ -99,7 +102,7 @@ function displayMissionHeads(loadedLaunches) {
 
             // Add content to mission head
             missionHead.innerHTML = `
-                <div class="mission-head-date">${dateConverterShort(data[i].launch_date_local)}</div>
+                <div class="mission-head-date">${launchDate}</div>
                 <div class="mission-head-name">${data[i].mission_name}</div>
                 <div class="mission-head-rocket">${data[i].rocket.rocket_name}</div>
                 <div class="mission-head-arrow"><i class="fas fa-angle-right"></i></div>
@@ -141,14 +144,31 @@ function displayMissionDetails(data, parentContainer) {
         flexDiv = document.createElement('div'),
         itemImg = document.createElement('div'),
         itemDetails = document.createElement('div'),
-        itemButton = document.createElement('div');
-    let missionPatch = "";
+        itemButtonContainer = document.createElement('div'),
+        itemHeading = document.createElement('h4'),
+        itemDescription = document.createElement('div'),
+        videoButton = document.createElement('div'),
+        wikiButton = document.createElement('div');
+    let missionPatch = "",
+        missionDescription = "",
+        launchDate = null,
+        videoLink = null,
+        wikiLink = null;
     // Load fallback image if not present in API
     if (!launch[0].links.mission_patch_small) {
         missionPatch = "images/rocket_fallback.png";
     } else {
         missionPatch = launch[0].links.mission_patch_small;
     }
+    // Write fallback text if description is not available
+    if (!launch[0].details) {
+        missionDescription = "Detailed information about this mission is not available yet. Check back for updates!";
+    } else {
+        missionDescription = launch[0].details;
+    }
+    // Check if launch date is confirmed
+    launchDate = confirmDate(launch[0]);
+    
     // Close any open item containers
     removeOpenItemContainer();
     // Assigning classes to elements
@@ -156,22 +176,33 @@ function displayMissionDetails(data, parentContainer) {
     flexDiv.classList.add('flex');
     itemImg.classList.add('item-img');
     itemDetails.classList.add('item-details');
-    itemButton.classList.add('info-button');
-    itemButton.classList.add('button');
+    itemButtonContainer.id = 'item-buttons';
+    itemButtonContainer.classList.add('flex');
+    itemDescription.classList.add('mission-description');
+    videoButton.classList.add('info-button');
+    videoButton.classList.add('button');
+    wikiButton.classList.add('info-button');
+    wikiButton.classList.add('button');
 
 
     // Add content to elements
     itemImg.innerHTML = `
         <img src=${missionPatch}>
     `;
+    itemHeading.innerHTML = `Flight number ${launch[0].flight_number}: ${launch[0].mission_name}`;
     itemDetails.innerHTML = `
+        <div>
+            <p class="item-heading">Flight&nbsp;number:</p>
+            <p class="item-value">${launch[0].flight_number}</p>
+        </div>
         <div>
             <p class="item-heading">Mission:</p>
             <p class="item-value">${launch[0].mission_name}</p>
         </div>
+        
         <div>
             <p class="item-heading">Launch:</p>
-            <p class="item-value">${dateConverterLong(launch[0].launch_date_local)}</p>
+            <p class="item-value">${launchDate}</p>
         </div>
         <div>
             <p class="item-heading">Rocket:</p>
@@ -179,23 +210,41 @@ function displayMissionDetails(data, parentContainer) {
         </div>
         <div>
             <p class="item-heading">Site:</p>
-            <p class="item-value">${launch[0].launch_site.site_name}</p>
+            <p class="item-value">${launch[0].launch_site.site_name_long}</p>
         </div>
     `;
-    itemButton.innerHTML = `
-        <a href="#">More info &gt;&gt;</a>
+    itemDescription.innerHTML = `
+        <p class="item-heading">Description:</p>
+        <p class="item-value">${missionDescription}</p>
     `;
+    // Add buttons if links exist in API
+    if (launch[0].links.wikipedia) {
+        wikiButton.innerHTML = `
+            <a href="${launch[0].links.wikipedia}" title="Visit mission Wikipedia page" role="link" target="_blank">Wikipedia page <i class="fas fa-external-link-alt"></i></a>
+        `;
+        itemButtonContainer.appendChild(wikiButton);
+    } else {
+        wikiButton.innerHTML = "";
+    }
+    if (launch[0].links.video_link) {
+        videoButton.innerHTML = `
+            <a href="${launch[0].links.video_link}" title="Watch official launch video" role="link" target="_blank">Watch video <i class="fas fa-external-link-alt"></i></a>
+        `;
+        itemButtonContainer.appendChild(videoButton);
+    } else {
+        videoButton.innerHTML = "";
+    }
+    
+
+
     // Append elements to DOM
     flexDiv.appendChild(itemImg);
     flexDiv.appendChild(itemDetails);
+    itemContainer.appendChild(itemHeading);
     itemContainer.appendChild(flexDiv);
-    itemContainer.appendChild(itemButton);
+    itemContainer.appendChild(itemDescription);
+    itemContainer.appendChild(itemButtonContainer);
     parentContainer.appendChild(itemContainer);
-    
-    // Add event listener to close mission details container
-    // missionHead.addEventListener('click', function() {       
-    //     removeOpenItemContainer();
-    // });
 
 }
 // Remove any open item containers
@@ -206,7 +255,14 @@ function removeOpenItemContainer() {
         itemContainers[i].parentNode.removeChild(itemContainers[i]);
     }
 }
-
+// Check if launch date is confirmed
+function confirmDate(item) {
+    if (item.tentative_max_precision === 'hour' || item.tentative_max_precision === 'day') {
+        return dateConverterShort(item.launch_date_local);
+    } else {
+        return "Unknown";
+    }
+}
 // Convert dates to strings
 function dateConverterLong(date) {
     const launchDate = new Date(date);
