@@ -2,9 +2,9 @@
 const loadedLaunches = (function() {
     let pastLaunches = {
         allData: [],
+        searchResult: [],
         apiURL: "launches/past",
         parentContainer: document.querySelector('#past-launches .item-list'),
-        sectionName: "pastLaunches",
         loadAmount: 25,
         loadIndex: 0,
         getData: function(data) {
@@ -23,9 +23,9 @@ const loadedLaunches = (function() {
     },
         comingLaunches = {
             allData: [],
+            searchResult: [],
             apiURL: "launches/upcoming",
             parentContainer: document.querySelector('#coming-launches .item-list'),
-            sectionName: "comingLaunches",
             loadAmount: 25,
             loadIndex: 0,
             getData: function(data) {
@@ -76,16 +76,15 @@ function loadAPI(loadedLaunches) {
         .then((data) => {
             // Send data to section object and call displayMissionHeads
             loadedLaunches.getData(data);
-            displayMissionHeads(loadedLaunches);
+            displayMissionHeads(loadedLaunches, loadedLaunches.allData);
         })
         .catch(err => console.log(err));
 };
 
 // Display mission heads
-function displayMissionHeads(loadedLaunches) {
+function displayMissionHeads(loadedLaunches, data) {
     let i = loadedLaunches.loadIndex;
-    const amount = loadedLaunches.loadAmount + i,
-        data = loadedLaunches.allData;
+    const amount = loadedLaunches.loadAmount + i;
 
     console.log(data);
     // Remove load more button if it exists
@@ -267,7 +266,7 @@ function confirmDate(item) {
     if (item.tentative_max_precision === 'hour' || item.tentative_max_precision === 'day') {
         return dateConverterShort(item.launch_date_local);
     } else {
-        return "Unknown";
+        return "Coming";
     }
 }
 // Convert dates to strings
@@ -293,6 +292,19 @@ function dateConverterShort(date) {
 }
 function performSearch(searchString) {
     console.log(searchString);
+    const searchPattern = new RegExp(searchString, 'i'),
+        pastLaunches = loadedLaunches.pastLaunches.allData,
+        comingLaunches = loadedLaunches.comingLaunches.allData;
+    let searchResult = "";
+
+    
+    searchResult = pastLaunches.filter(function(pastLaunches) {
+        // LOOP THROUGH ALL DATA ATTRIBUTES AND ADD RESULTS TO ARRAY
+        return searchPattern.test(pastLaunches.mission_name);
+    });
+    
+    console.log(searchResult);
+
 }
 
 (function() {
