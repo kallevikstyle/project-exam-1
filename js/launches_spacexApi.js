@@ -7,6 +7,7 @@ const loadedLaunches = (function() {
         parentContainer: document.querySelector('#past-launches .item-list'),
         loadAmount: 25,
         loadIndex: 0,
+        loadMoreButton: "",
         getData: function(data) {
             // Sort array in descending order
             data.sort((a, b) => (a.launch_date_local > b.launch_date_local) ? -1 : 1);
@@ -19,6 +20,11 @@ const loadedLaunches = (function() {
         },
         removeLoadMore: function() {
             removeLoadMoreButton(this.parentContainer, this.loadMoreButton);
+        },
+        startSearch: function(searchString) {
+            // Call search function and load search results into object
+            this.searchResult = performSearch(searchString, this.allData);
+            displayMissionHeads(this, this.searchResult);
         }
     },
         comingLaunches = {
@@ -27,6 +33,7 @@ const loadedLaunches = (function() {
             apiURL: "launches/upcoming",
             parentContainer: document.querySelector('#coming-launches .item-list'),
             loadAmount: 25,
+            loadMoreButton: "",
             loadIndex: 0,
             getData: function(data) {
                 let unknownDates = [];
@@ -41,17 +48,61 @@ const loadedLaunches = (function() {
             },
             removeLoadMore: function() {
                 removeLoadMoreButton(this.parentContainer, this.loadMoreButton);
+            },
+            startSearch: function (searchString) {
+                // Call search function and load search results into object
+                this.searchResult = performSearch(searchString, this.allData);
+                displayMissionHeads(this, this.searchResult);
             }
-        },
-        searchCategories = {
-            missionName: "mission_name",
-            flightNumber: "flight_number",
-            rocket: ["rocket", "rocket_id", "rocket_name"],
-            launchSite: ["launch_site", "site_name", "site_name_long"],
-            //details: "details",
-            crew: "crew"
-
         };
+
+    // Perform search in content
+    function performSearch(searchString, data) {
+        const searchPattern = new RegExp(searchString, 'i');
+        let tempResult = [],
+            allResults = [];
+
+        
+        // Update searchResults with results from each category
+        // Mission name
+        tempResult = data.filter(function (data) {
+            return searchPattern.test(data.mission_name);
+        });
+        allResults = allResults.concat(tempResult);
+        // Flight number
+        tempResult = data.filter(function (data) {
+            return searchPattern.test(data.flight_number);
+        });
+        allResults = allResults.concat(tempResult);
+        // Rocket
+        tempResult = data.filter(function (data) {
+            return searchPattern.test(data.rocket.rocket_name);
+        });
+        allResults = allResults.concat(tempResult);
+        // launch site short and long
+        tempResult = data.filter(function (data) {
+            return searchPattern.test(data.launch_site.site_name);
+        });
+        allResults = allResults.concat(tempResult);
+        tempResult = data.filter(function (data) {
+            return searchPattern.test(data.launch_site.site_name_long);
+        });
+        allResults = allResults.concat(tempResult);
+        // Crew
+        tempResult = data.filter(function (data) {
+            return searchPattern.test(data.crew);
+        });
+        allResults = allResults.concat(tempResult);
+        // Details
+        tempResult = data.filter(function (data) {
+            return searchPattern.test(data.details);
+        });
+        allResults = allResults.concat(tempResult);
+
+        // Return resulting array to object
+        return allResults;
+    }
+    
     // Create a load more button
     function createLoadMoreButton(parentContainer) {
         // Add a load more button
@@ -69,13 +120,15 @@ const loadedLaunches = (function() {
     }
     // Remove loadMoreButton
     function removeLoadMoreButton(parentContainer, button) {
-        parentContainer.removeChild(button);
+        if (button) {
+            parentContainer.removeChild(button);
+            // button.parentNode.removeChild(button);
+        }
     }
 
     return {
         pastLaunches,
-        comingLaunches,
-        searchCategories
+        comingLaunches
     }
 })();
 // -------- FUNCTIONS --------------
@@ -100,6 +153,8 @@ function displayMissionHeads(loadedLaunches, data) {
     // Remove load more button if it exists
     if (loadedLaunches.loadMoreButton) {
         loadedLaunches.removeLoadMore();
+        delete loadedLaunches.loadMoreButton;
+        
     }
     // Loop through missions data array
     for (i; i < data.length && i <= amount; i++) {
@@ -250,8 +305,6 @@ function displayMissionDetails(data, parentContainer) {
     } else {
         videoButton.innerHTML = "";
     }
-    
-
 
     // Append elements to DOM
     flexDiv.appendChild(itemImg);
@@ -302,58 +355,55 @@ function dateConverterShort(date) {
 }
 // Search function
 //-------------------
-function performSearch(searchString) {
-    console.log(searchString);
+function performSearch(searchString, loadedLaunches) {
     const searchPattern = new RegExp(searchString, 'i'),
-        pastLaunches = loadedLaunches.pastLaunches.allData,
-        comingLaunches = loadedLaunches.comingLaunches.allData;
-    let tempResult = [],
-        searchResults = [];
+        data = loadedLaunches.allData;
+    let tempResult = [];
+    loadedLaunches.searchResult = [];
 
     // Update searchResults with results from each category
     // Mission name
-    tempResult = pastLaunches.filter(function(pastLaunches) {
-        return searchPattern.test(pastLaunches.mission_name);
+    tempResult = data.filter(function (data) {
+        return searchPattern.test(data.mission_name);
     });      
-    searchResults = searchResults.concat(tempResult);
+    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
     // Flight number
-    tempResult = pastLaunches.filter(function(pastLaunches) {
-        return searchPattern.test(pastLaunches.flight_number);
+    tempResult = data.filter(function (data) {
+        return searchPattern.test(data.flight_number);
     });      
-    searchResults = searchResults.concat(tempResult);
+    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
      // Rocket
-    tempResult = pastLaunches.filter(function(pastLaunches) {
-        return searchPattern.test(pastLaunches.rocket.rocket_name);
+    tempResult = data.filter(function (data) {
+        return searchPattern.test(data.rocket.rocket_name);
     });
-    searchResults = searchResults.concat(tempResult);
+    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
     // launch site short and long
-    tempResult = pastLaunches.filter(function(pastLaunches) {
-        return searchPattern.test(pastLaunches.launch_site.site_name);
+    tempResult = data.filter(function (data) {
+        return searchPattern.test(data.launch_site.site_name);
     });      
-    searchResults = searchResults.concat(tempResult);
-    tempResult = pastLaunches.filter(function(pastLaunches) {
-        return searchPattern.test(pastLaunches.launch_site.site_name_long);
+    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
+    tempResult = data.filter(function (data) {
+        return searchPattern.test(data.launch_site.site_name_long);
     });
-    searchResults = searchResults.concat(tempResult);
+    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
     // Crew
-    tempResult = pastLaunches.filter(function(pastLaunches) {
-        return searchPattern.test(pastLaunches.crew);
+    tempResult = data.filter(function (data) {
+        return searchPattern.test(data.crew);
     });      
-    searchResults = searchResults.concat(tempResult);
+    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
     // Details
-    tempResult = pastLaunches.filter(function(pastLaunches) {
-        return searchPattern.test(pastLaunches.details);
+    tempResult = data.filter(function (data) {
+        return searchPattern.test(data.details);
     });      
-    searchResults = searchResults.concat(tempResult);
+    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
 
-    loadedLaunches.pastLaunches.searchResult = searchResults;
+
+    
 }
 
 (function() {
     const searchField = document.querySelector('#search-field'),
         searchButton = document.querySelector('#search-button');
-
-    
 
     // Check if 'past-launches' section is present
     if (loadedLaunches.pastLaunches.parentContainer) {
@@ -368,14 +418,31 @@ function performSearch(searchString) {
     // -----------------------
     searchButton.addEventListener('click', function() {
         if (searchField.value) {
-            performSearch(searchField.value);
+            const missionWrappers = document.getElementsByClassName('mission-wrapper');
+            // Empty launch containers
+            while (missionWrappers.length > 0) {
+                missionWrappers[0].parentNode.removeChild(missionWrappers[0]);
+            }
+            loadedLaunches.pastLaunches.startSearch(searchField.value);
+            loadedLaunches.comingLaunches.startSearch(searchField.value);
         }
     });
     searchField.addEventListener('keypress', function(e) {
         if (searchField.value && e.keyCode === 13) {
             e.preventDefault();
-            performSearch(searchField.value);
+            const missionWrappers = document.getElementsByClassName('mission-wrapper');
+            // Empty launch containers
+            while (missionWrappers.length > 0) {
+                missionWrappers[0].parentNode.removeChild(missionWrappers[0]);
+            }
+            loadedLaunches.pastLaunches.startSearch(searchField.value);
+            loadedLaunches.comingLaunches.startSearch(searchField.value);
         }
     });
 
 })();
+
+// BUGS
+// Try to enter '9' in search field. It loads more forever
+// Try: Remove duplicates in searchResults
+// https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep

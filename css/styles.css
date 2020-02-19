@@ -101,17 +101,19 @@ main > *:first-child {
 }
 
 /* Mission heads */
-.mission-wrapper {
-	/*margin: 0;*/
-	/*padding: 0;*/
+.mission-list-heading:first-child {
+	
 }
-.mission-wrapper:first-child {
+.mission-wrapper:first-child,
+.mission-list-heading:first-child {
 	margin-top: 14px;
 }
-.mission-wrapper:last-child {
+.mission-wrapper:last-child,
+.mission-list-heading:last-child {
 	margin-bottom: 10px;
 }
-.mission-wrapper:first-child .mission-head {
+.mission-wrapper:first-child .mission-head,
+.mission-list-heading:first-child .mission-head {
 	background-color: #000;
 	background-color: transparent;
 	color: #fff;
