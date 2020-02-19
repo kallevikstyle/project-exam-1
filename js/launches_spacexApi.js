@@ -363,7 +363,10 @@ function dateConverterShort(date) {
 
 (function() {
     const searchField = document.querySelector('#search-field'),
-        searchButton = document.querySelector('#search-button');
+        searchButton = document.querySelector('#search-button'),
+        resetSearch = document.querySelector('#reset-search'),
+        resetSearchLink = document.querySelector('#reset-search a'),
+        missionWrappers = document.getElementsByClassName('mission-wrapper');
 
     // Check if 'past-launches' section is present
     if (loadedLaunches.pastLaunches.parentContainer) {
@@ -378,26 +381,44 @@ function dateConverterShort(date) {
     // -----------------------
     searchButton.addEventListener('click', function() {
         if (searchField.value) {
-            const missionWrappers = document.getElementsByClassName('mission-wrapper');
             // Empty launch containers
             while (missionWrappers.length > 0) {
                 missionWrappers[0].parentNode.removeChild(missionWrappers[0]);
             }
             loadedLaunches.pastLaunches.startSearch(searchField.value);
             loadedLaunches.comingLaunches.startSearch(searchField.value);
+            // Show reset search button
+            resetSearch.style.display = "block";
         }
     });
     searchField.addEventListener('keypress', function(e) {
         if (searchField.value && e.keyCode === 13) {
             e.preventDefault();
-            const missionWrappers = document.getElementsByClassName('mission-wrapper');
             // Empty launch containers
             while (missionWrappers.length > 0) {
                 missionWrappers[0].parentNode.removeChild(missionWrappers[0]);
             }
             loadedLaunches.pastLaunches.startSearch(searchField.value);
             loadedLaunches.comingLaunches.startSearch(searchField.value);
+            // Show reset search button
+            resetSearch.style.display = "block";
         }
+    });
+    // Reset search
+    resetSearchLink.addEventListener('click', function() {
+        searchField.value = "";
+        // Reset loadIndex
+        loadedLaunches.pastLaunches.loadIndex = 0;
+        loadedLaunches.comingLaunches.loadIndex = 0;
+        // Empty launch containers
+        while (missionWrappers.length > 0) {
+            missionWrappers[0].parentNode.removeChild(missionWrappers[0]);
+        }
+        displayMissionHeads(loadedLaunches.pastLaunches, loadedLaunches.pastLaunches.allData);
+        displayMissionHeads(loadedLaunches.comingLaunches, loadedLaunches.comingLaunches.allData);
+        // Hide reset search button
+        resetSearch.style.display = "none";
+
     });
 
 })();

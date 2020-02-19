@@ -444,10 +444,13 @@ PAGES
 	/*border: 1px dashed Yellow;*/
 }
 #reset-search {
-/*	border: 1px dashed #C93C39;*/
+	display: none;
+
 }
 #search-tools #reset-search a {
 	color: #C93C39;
+	cursor: pointer;
+	/*background-color: white;*/
 }
 #launches {
 	/* border: 1px dotted grey; */
