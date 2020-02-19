@@ -53,7 +53,7 @@ h3, h4 {
 	text-align: center;
 }
 a {
-	text-decoration: none;
+	text-decoration: underline;
 	color: #ebe756;
 }
 #background-image {
@@ -206,6 +206,7 @@ main > *:first-child {
 .button a {
 	display: block;
 	height: 100%;
+	text-decoration: none;
 	padding: 6px 8px;
 	color: #fff;
 }
@@ -240,7 +241,7 @@ form p {
 h1, h2, #main-navigation, #time-left span, .button, #cta-down {
 	font-family: "worksans-extralight", arial, sans-serif;
 }
-h3, h4, .mission-head, .item-heading, .item-list .load-more-button, #item-buttons .button {
+h3, h4, .mission-head, .item-heading, .item-list .load-more-button, #item-buttons .button, #search-tools a {
 	font-family: "worksans-regular", Arial, sans-serif;
 }
 p, input {
@@ -420,7 +421,7 @@ PAGES
 }
 
 /* Launches
-----------------*/
+----------------------*/
 #launches-search {
 	
 }
@@ -437,6 +438,16 @@ PAGES
 }
 #search-button a {
 	padding: 6px 12px;
+}
+#search-tools {
+	margin: 5px auto 0 auto;
+	/*border: 1px dashed Yellow;*/
+}
+#reset-search {
+/*	border: 1px dashed #C93C39;*/
+}
+#search-tools #reset-search a {
+	color: #C93C39;
 }
 #launches {
 	/* border: 1px dotted grey; */
