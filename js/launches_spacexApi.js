@@ -22,6 +22,7 @@ const loadedLaunches = (function() {
             removeLoadMoreButton(this.parentContainer, this.loadMoreButton);
         },
         startSearch: function(searchString) {
+            this.loadIndex = 0;
             // Call search function and load search results into object
             this.searchResult = performSearch(searchString, this.allData);
             displayMissionHeads(this, this.searchResult);
@@ -50,6 +51,7 @@ const loadedLaunches = (function() {
                 removeLoadMoreButton(this.parentContainer, this.loadMoreButton);
             },
             startSearch: function (searchString) {
+                this.loadIndex = 0;
                 // Call search function and load search results into object
                 this.searchResult = performSearch(searchString, this.allData);
                 displayMissionHeads(this, this.searchResult);
@@ -62,8 +64,6 @@ const loadedLaunches = (function() {
         let tempResult = [],
             allResults = [],
             uniqueResults = new Set();
-
-        
         // Update searchResults with results from each category
         // Mission name
         tempResult = data.filter(function (data) {
@@ -94,9 +94,9 @@ const loadedLaunches = (function() {
             return searchPattern.test(data.crew);
         });
         allResults = allResults.concat(tempResult);
-        // Details
+        // Launch year
         tempResult = data.filter(function (data) {
-            return searchPattern.test(data.details);
+            return searchPattern.test(data.launch_year);
         });
         allResults = allResults.concat(tempResult);
 
@@ -171,7 +171,7 @@ function displayMissionHeads(loadedLaunches, data) {
                 missionHead = document.createElement('div');
             let launchDate = null;
             // Check if launch date is confirmed
-                launchDate = confirmDate(data[i]);
+            launchDate = confirmDate(data[i]);
 
             // Assign classes and id to elements
             missionWrapper.classList.add('mission-wrapper');
@@ -199,7 +199,6 @@ function displayMissionHeads(loadedLaunches, data) {
                     displayMissionDetails(data, missionWrapper);
                 }
             });
-            // loadedLaunches.toggleMissionDetails(missionHead);
         } else if (i === amount && amount < data.length) {            
             // Create a 'load more' button from module object
             loadedLaunches.loadMore();
@@ -402,8 +401,3 @@ function dateConverterShort(date) {
     });
 
 })();
-
-// BUGS
-// Try to enter '9' in search field. It loads more forever
-// Try: Remove duplicates in searchResults
-// https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep
