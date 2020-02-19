@@ -157,7 +157,6 @@ function displayMissionHeads(loadedLaunches, data) {
     let i = loadedLaunches.loadIndex;
     const amount = loadedLaunches.loadAmount + i;
 
-    console.log(data);
     // Remove load more button if it exists
     if (loadedLaunches.loadMoreButton) {
         loadedLaunches.removeLoadMore();
