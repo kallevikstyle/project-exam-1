@@ -60,7 +60,8 @@ const loadedLaunches = (function() {
     function performSearch(searchString, data) {
         const searchPattern = new RegExp(searchString, 'i');
         let tempResult = [],
-            allResults = [];
+            allResults = [],
+            uniqueResults = new Set();
 
         
         // Update searchResults with results from each category
@@ -99,8 +100,15 @@ const loadedLaunches = (function() {
         });
         allResults = allResults.concat(tempResult);
 
+        // Add all results to uniqueResults set
+        for (let i = 0; i < allResults.length; i++) {
+            uniqueResults.add(allResults[i]);
+        }
+        // Convert to array
+        uniqueResults = Array.from(uniqueResults);
+
         // Return resulting array to object
-        return allResults;
+        return uniqueResults;
     }
     
     // Create a load more button
@@ -352,53 +360,6 @@ function dateConverterShort(date) {
     }
 
     return day + "." + month + "." + year;
-}
-// Search function
-//-------------------
-function performSearch(searchString, loadedLaunches) {
-    const searchPattern = new RegExp(searchString, 'i'),
-        data = loadedLaunches.allData;
-    let tempResult = [];
-    loadedLaunches.searchResult = [];
-
-    // Update searchResults with results from each category
-    // Mission name
-    tempResult = data.filter(function (data) {
-        return searchPattern.test(data.mission_name);
-    });      
-    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
-    // Flight number
-    tempResult = data.filter(function (data) {
-        return searchPattern.test(data.flight_number);
-    });      
-    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
-     // Rocket
-    tempResult = data.filter(function (data) {
-        return searchPattern.test(data.rocket.rocket_name);
-    });
-    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
-    // launch site short and long
-    tempResult = data.filter(function (data) {
-        return searchPattern.test(data.launch_site.site_name);
-    });      
-    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
-    tempResult = data.filter(function (data) {
-        return searchPattern.test(data.launch_site.site_name_long);
-    });
-    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
-    // Crew
-    tempResult = data.filter(function (data) {
-        return searchPattern.test(data.crew);
-    });      
-    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
-    // Details
-    tempResult = data.filter(function (data) {
-        return searchPattern.test(data.details);
-    });      
-    loadedLaunches.searchResult = loadedLaunches.searchResult.concat(tempResult);
-
-
-    
 }
 
 (function() {
