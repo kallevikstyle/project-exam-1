@@ -159,6 +159,7 @@ main > *:first-child {
 .item-container .item-img {
 	flex: 1;
 	padding: 5px;
+	/* border: 1px dashed lime; */
 }
 .item-img img {
 	max-width: 100%;
@@ -481,14 +482,16 @@ PAGES
 #rockets-container {
 	/*border: 1px dashed white;*/
 	width: 96%;
-	/*min-height: 100vh;*/
-	/*height: 600px;*/
 }
 #rockets-container .item-list {
 	border: none;
 }
 #rockets-container .item-container {
 	margin-top: 14px;
+	font-size: 1.2rem;
+}
+#rockets-container .item-container h4 {
+	font-size: 1.4rem;
 }
 
 /* About

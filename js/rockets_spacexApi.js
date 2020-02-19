@@ -22,7 +22,9 @@ const loadedRockets = (function() {
 		        itemHeading = document.createElement('h4'),
 		        itemDescription = document.createElement('div'),
 		        imagesButton = document.createElement('div'),
-		        wikiButton = document.createElement('div');
+				wikiButton = document.createElement('div');
+			let status = "",
+				textColor = "";
 
 		        // Assign classes to elements
 		        itemContainer.classList.add('item-container');
@@ -37,6 +39,16 @@ const loadedRockets = (function() {
 			    wikiButton.classList.add('info-button');
 			    wikiButton.classList.add('button');
 
+			const colorGreen = `style="color:green;"`;
+				// Check if rocket is active
+				if (item.active) {
+					status = "Active"
+					textColor = `style="color:green;"`;
+				} else {
+					status = "Inactive"
+					textColor = `style="color:#c93c39;"`;
+				}
+
 			    // Add content to elements
 			    itemImg.innerHTML = `
 			        <img src=${item.flickr_images[0]}>
@@ -44,30 +56,35 @@ const loadedRockets = (function() {
 			    itemHeading.innerHTML = `${item.rocket_name}`;
 			    itemDetails.innerHTML = `
 			        <div>
-			            <p class="item-heading">Flight&nbsp;number:</p>
-			            <p class="item-value">${item.rocket_name}</p>
+			            <p class="item-heading">Status:</p>
+			            <p class="item-value" ${textColor}>${status}</p>
 			        </div>
 			        <div>
-			            <p class="item-heading">Mission:</p>
-			            <p class="item-value">${item.rocket_name}</p>
+			            <p class="item-heading">Country:</p>
+			            <p class="item-value">${item.country}</p>
 			        </div>
 			        
 			        <div>
-			            <p class="item-heading">Launch:</p>
-			            <p class="item-value">${item.rocket_name}</p>
+			            <p class="item-heading">First flight:</p>
+			            <p class="item-value">${dateConverterShort(item.first_flight)}</p>
 			        </div>
 			        <div>
-			            <p class="item-heading">Rocket:</p>
-			            <p class="item-value">${item.rocket_name}</p>
+			            <p class="item-heading">Height:</p>
+			            <p class="item-value">${item.height.meters} m</p>
 			        </div>
 			        <div>
-			            <p class="item-heading">Site:</p>
-			            <p class="item-value">${item.rocket_name}</p>
+			            <p class="item-heading">Diameter:</p>
+			            <p class="item-value">${item.diameter.meters} m</p>
+					</div>
+					 <div>
+			            <p class="item-heading">Mass:</p>
+			            <p class="item-value">${kilosToTons(item.mass.kg)} tons</p>
 			        </div>
 			    `;
 			    itemDescription.innerHTML = `
 			        <p class="item-heading">Description:</p>
-			        <p class="item-value">${item.rocket_name}</p>
+					<p class="item-value">${item.description}</p>
+					<p class="item-value">${item.rocket_name} has ${item.stages} stages and ${item.engines.number} ${item.engines.type} engine(s).</p>
 			    `;
 			    // Add buttons if links exist in API
 			    if (item.wikipedia) {
@@ -96,7 +113,27 @@ const loadedRockets = (function() {
 			    rockets.parentContainer.appendChild(itemContainer);
 			} 
 		}
+	// Convert date
+	function dateConverterShort(date) {
+		const launchDate = new Date(date);
+		let day = launchDate.getDate(),
+			month = (launchDate.getMonth() + 1),
+			year = launchDate.getFullYear();
 
+		// Add leading zero
+		if (day < 10) {
+			day = "0" + day;
+		}
+		if (month < 10) {
+			month = "0" + month;
+		}
+
+		return day + "." + month + "." + year;
+	}
+	// Convert kilos to tons with only one decimal
+	function kilosToTons(kilos) {
+		return Math.round((kilos / 1000) * 10) / 10;
+	}
 
 	return {
 		rockets
