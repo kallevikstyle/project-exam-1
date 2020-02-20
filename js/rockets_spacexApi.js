@@ -25,7 +25,7 @@ const loadedRockets = (function() {
 				wikiButton = document.createElement('div');
 			let status = "",
 				textColor = "",
-				imageSrc = "";
+				imageSrc = {};
 
 		        // Assign classes to elements
 		        itemContainer.classList.add('item-container');
@@ -48,12 +48,15 @@ const loadedRockets = (function() {
 				status = "Inactive"
 				textColor = `style="color:#c93c39;"`;
 			}
-			// Find rocket image
+			// Find rocket image or fallback image
 			imageSrc = findImage(item);
 
 		    // Add content to elements
 		    itemImg.innerHTML = `
-		        <img src=${imageSrc}>
+		    	<figure>
+		        	<img src=${imageSrc.imagePath} alt="${item.rocket_name} by SpaceX">
+		        	<figcaption>${imageSrc.attribution}</figcaption>
+		        </figure>
 		    `;
 		    itemHeading.innerHTML = `${item.rocket_name}`;
 		    itemDetails.innerHTML = `
@@ -97,17 +100,10 @@ const loadedRockets = (function() {
 		    } else {
 		        wikiButton.innerHTML = "";
 		    }
-		    if (item.flickr_images[0]) {
-		        imagesButton.innerHTML = `
-		            <a href="${item.flickr_images[0]}" title="See more photos" role="link" target="_blank">See photos <i class="fas fa-external-link-alt"></i></a>
-		        `;
-		        itemButtonContainer.appendChild(imagesButton);
-		    } else {
-		        imagesButton.innerHTML = "";
-		    }
+		    
 		    // Append elements to DOM
-		    flexDiv.appendChild(itemDetails);
 		    flexDiv.appendChild(itemImg);
+		    flexDiv.appendChild(itemDetails);
 		    itemContainer.appendChild(itemHeading);
 		    itemContainer.appendChild(flexDiv);
 		    itemContainer.appendChild(itemDescription);
@@ -117,27 +113,61 @@ const loadedRockets = (function() {
 	}
 	// Find item image
 	function findImage(item) {
-		let imagePath = "images/rocket",
-			imageTitle = null;
-		const fallbackImage = "_fallback.png",
-			rocketImages = [
-			"falcon1",
-			"falcon9",
-			"falconheavy",
-			"starship"
+		let imageExists = false; 
+		const rocketImages = [
+			{
+				name: "falcon1",
+				imagePath: "images/rocket_falcon1.jpg",
+				attribution: `
+					Image source: <a href="https://commons.wikimedia.org/wiki/File:Falcon_1_Flight_4_liftoff.jpg" title="Link to source" role="link" target="_blank">SpaceX&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i></a><br>
+					License: <a href="https://creativecommons.org/licenses/by-sa/3.0/" title="Link to CC license" role="link" target="_blank">CreativeCommons&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i></a>
+						`
+			},
+			{
+				name: "falcon9",
+				imagePath: "images/rocket_falcon9.jpg",
+				attribution: `
+					Image source: <a href="https://www.flickr.com/photos/spacex/49549022057/" title="Link to source" role="link" target="_blank">SpaceX&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i></a><br>
+					License: <a href="https://creativecommons.org/licenses/by-nc/2.0/" title="Link to CC license" role="link" target="_blank">CreativeCommons&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i></a>
+						`
+			},
+			{
+				name: "falconheavy",
+				imagePath: "images/rocket_falconheavy.jpg",
+				attribution: `
+					Image source: <a href="https://www.flickr.com/photos/spacex/38583829295/" title="Link to source" role="link" target="_blank">SpaceX&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i></a><br>
+					License: <a href="https://creativecommons.org/licenses/by-nc/2.0/" title="Link to CC license" role="link" target="_blank">CreativeCommons&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i></a>
+						`
+			},
+			{
+				name: "starship",
+				imagePath: "images/rocket_starship.jpg",
+				attribution: `
+					Image source: <a href="https://www.flickr.com/photos/spacex/48954138962/" title="Link to source" role="link" target="_blank">SpaceX&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i></a><br>
+					License: <a href="https://creativecommons.org/licenses/by-nc/2.0/" title="Link to CC license" role="link" target="_blank">CreativeCommons&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i></a>
+						`
+			},
+			{
+				name: "fallback",
+				imagePath: "images/rocket_fallback.png",
+				attribution: `
+					A SpaceX rocket
+						`
+			}
 		];
 		// Check if rocket exists in list of images
 		for (let i = 0; i < rocketImages.length; i++) {
-			if (rocketImages[i] === item.rocket_id) {
-				imageTitle = rocketImages[i] + ".jpg";
+			if (rocketImages[i].name === item.rocket_id) {
+				imageExists = true;
+				return rocketImages[i];
 			}
 		}
-		
-		if (!imageTitle) {
-			return imagePath + fallbackImage;
-		} else {
-			return imagePath + "_" + imageTitle;
-		}
+		// Return fallback if image does not exist
+		if (!imageExists) {
+			return rocketImages.filter(function (rocketImages) {
+	            return searchPattern.test("fallback");
+	        });
+		} 
 	}
 	// Convert date
 	function dateConverterShort(date) {

@@ -58,6 +58,7 @@ a {
 }
 #background-image {
 	background: url('../images/spacex-hero-img_1920_o72.jpg') no-repeat fixed center/cover;
+	margin: 0 auto;
 	max-width: 1920px;
 	min-height: 100vh;
 }
@@ -245,7 +246,7 @@ h1, h2, #main-navigation, #time-left span, .button, #cta-down {
 h3, h4, .mission-head, .item-heading, .item-list .load-more-button, .item-buttons .button, #search-tools a {
 	font-family: "worksans-regular", Arial, sans-serif;
 }
-p, input {
+p, input, figcaption {
 	font-family: "montserrat-light", helvetica, sans-serif;
 }
 
@@ -487,16 +488,40 @@ PAGES
 	border: none;
 }
 #rockets-container .item-container {
+	width: 80%;
 	margin-top: 14px;
 	font-size: 1.2rem;
 }
 #rockets-container .item-container h4 {
-	font-size: 1.4rem;
+	font-size: 1.8rem;
 }
 #rockets-container .item-container img {
 	border-radius: 50%;
 }
-
+#rockets-container .item-container .item-img {
+	flex: 4;
+}
+#rockets-container .item-container .item-details {
+	flex: 6;
+}
+#rockets-container figcaption {
+	margin-top: 5px;
+	padding: 4px 0;
+	border-left: 1px solid #EBE756;
+	background-color: transparent;
+	background-color: rgba(255, 255, 255, 0.1);
+	text-align: center;
+	font-size: .8rem;
+}
+#rockets-container figcaption a {
+	color: #fff;
+	text-decoration: none;
+	border-bottom: 1px dotted #fff;
+	font-style: italic;
+}
+#rockets-container figcaption i {
+	font-size: .6rem;
+}
 /* About
 --------------*/
 #about-container {
