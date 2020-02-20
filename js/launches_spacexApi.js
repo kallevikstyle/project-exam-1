@@ -253,7 +253,7 @@ function displayMissionDetails(data, parentContainer) {
     flexDiv.classList.add('flex');
     itemImg.classList.add('item-img');
     itemDetails.classList.add('item-details');
-    itemButtonContainer.id = 'item-buttons';
+    itemButtonContainer.classList.add('item-buttons');
     itemButtonContainer.classList.add('flex');
     itemDescription.classList.add('mission-description');
     videoButton.classList.add('info-button');
