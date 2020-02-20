@@ -550,6 +550,9 @@ PAGES
 	bottom: 0;
 	right: 0;
 }
+#about-container .button i {
+	font-size: .8rem;
+}
 #about-site .item-img {
 	background: url('../images/about_rocket-launch2_600px.jpg') no-repeat center/cover;
 }

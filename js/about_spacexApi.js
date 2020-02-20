@@ -16,7 +16,7 @@ function displayInfo(data, parentContainer) {
 		<p>${data.summary}</p>
 		<p>${data.founder} was the founder and SpaceX now has ${data.employees} employees. ${data.ceo} is the CEO and the company has its headquarters in ${data.headquarters.city}, ${data.headquarters.state}.</p>
 		<div class="info-button button">
-			<a href="#">Go to SpaceX.com &gt;&gt;</a></i>
+			<a href="https://spacex.com" title="Visit spacex.com" role="link" target="_blank">Go to SpaceX.com&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i></a></i>
 		</div>
 	`;
 }
