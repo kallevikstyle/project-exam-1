@@ -34,7 +34,7 @@ const loadedRockets = (function() {
 			    itemDetails.classList.add('item-details');
 			    itemButtonContainer.classList.add('item-buttons');
 			    itemButtonContainer.classList.add('flex');
-			    itemDescription.classList.add('mission-description');
+			    itemDescription.classList.add('item-description');
 			    imagesButton.classList.add('info-button');
 			    imagesButton.classList.add('button');
 			    wikiButton.classList.add('info-button');

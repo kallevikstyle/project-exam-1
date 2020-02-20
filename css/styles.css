@@ -188,10 +188,10 @@ main > *:first-child {
 	flex: 2;
 	text-align: left;
 }
-.item-container .mission-description {
+.item-container .item-description {
 	padding: 0 10px;
 }
-.item-container .mission-description p {
+.item-container .item-description p {
 	max-width: 600px;
 	margin: 10px auto;
 }
@@ -503,6 +503,11 @@ PAGES
 }
 #rockets-container .item-container .item-details {
 	flex: 6;
+}
+#rockets-container .item-description {
+	padding: 10px;
+	background-color: transparent;
+	background-color: rgba(255, 255, 255, 0.1);
 }
 #rockets-container figcaption {
 	margin-top: 5px;

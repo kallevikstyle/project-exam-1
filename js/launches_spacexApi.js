@@ -255,7 +255,7 @@ function displayMissionDetails(data, parentContainer) {
     itemDetails.classList.add('item-details');
     itemButtonContainer.classList.add('item-buttons');
     itemButtonContainer.classList.add('flex');
-    itemDescription.classList.add('mission-description');
+    itemDescription.classList.add('item-description');
     videoButton.classList.add('info-button');
     videoButton.classList.add('button');
     wikiButton.classList.add('info-button');
