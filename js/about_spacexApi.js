@@ -11,7 +11,14 @@ const loadedInfo = (function() {
 // Display SpaceX info on page
 function displayInfo(data, parentContainer) {
 	console.log(data);
-	console.log(parentContainer);
+	parentContainer.innerHTML = `
+		<h3>About SpaceX</h3>
+		<p>${data.summary}</p>
+		<p>${data.founder} was the founder and SpaceX now has ${data.employees} employees. ${data.ceo} is the CEO and the company has its headquarters in ${data.headquarters.city}, ${data.headquarters.state}.</p>
+		<div class="info-button button">
+			<a href="#">Go to SpaceX.com &gt;&gt;</a></i>
+		</div>
+	`;
 }
 
 	return {

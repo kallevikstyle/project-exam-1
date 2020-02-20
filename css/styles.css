@@ -537,7 +537,10 @@ PAGES
 	position: relative;
 }
 #about-container p {
-	margin-bottom: 50px;
+	margin-bottom: 10px;
+}
+#about-spacex p:last-of-type {
+	margin-bottom: 40px;
 }
 #about-container .button {
 	display: inline-block;
