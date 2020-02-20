@@ -535,6 +535,7 @@ PAGES
 
 #about-container .item-container {
 	position: relative;
+	border: none;
 }
 #about-container p {
 	margin-bottom: 10px;
@@ -548,6 +549,12 @@ PAGES
 	position: absolute;
 	bottom: 0;
 	right: 0;
+}
+#about-site .item-img {
+	background: url('../images/about_rocket-launch2_600px.jpg') no-repeat center/cover;
+}
+#about-spacex .item-img {
+	background: url('../images/about_satellite_600px.jpg') no-repeat center/cover;
 }
 /* Contact
 -------------*/
