@@ -493,6 +493,9 @@ PAGES
 #rockets-container .item-container h4 {
 	font-size: 1.4rem;
 }
+#rockets-container .item-container img {
+	border-radius: 50%;
+}
 
 /* About
 --------------*/

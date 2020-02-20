@@ -24,7 +24,8 @@ const loadedRockets = (function() {
 		        imagesButton = document.createElement('div'),
 				wikiButton = document.createElement('div');
 			let status = "",
-				textColor = "";
+				textColor = "",
+				imageSrc = "";
 
 		        // Assign classes to elements
 		        itemContainer.classList.add('item-container');
@@ -39,80 +40,105 @@ const loadedRockets = (function() {
 			    wikiButton.classList.add('info-button');
 			    wikiButton.classList.add('button');
 
-			const colorGreen = `style="color:green;"`;
-				// Check if rocket is active
-				if (item.active) {
-					status = "Active"
-					textColor = `style="color:green;"`;
-				} else {
-					status = "Inactive"
-					textColor = `style="color:#c93c39;"`;
-				}
+			// Check if rocket is active
+			if (item.active) {
+				status = "Active"
+				textColor = `style="color:green;"`;
+			} else {
+				status = "Inactive"
+				textColor = `style="color:#c93c39;"`;
+			}
+			// Find rocket image
+			imageSrc = findImage(item);
 
-			    // Add content to elements
-			    itemImg.innerHTML = `
-			        <img src=${item.flickr_images[0]}>
-			    `;
-			    itemHeading.innerHTML = `${item.rocket_name}`;
-			    itemDetails.innerHTML = `
-			        <div>
-			            <p class="item-heading">Status:</p>
-			            <p class="item-value" ${textColor}>${status}</p>
-			        </div>
-			        <div>
-			            <p class="item-heading">Country:</p>
-			            <p class="item-value">${item.country}</p>
-			        </div>
-			        
-			        <div>
-			            <p class="item-heading">First flight:</p>
-			            <p class="item-value">${dateConverterShort(item.first_flight)}</p>
-			        </div>
-			        <div>
-			            <p class="item-heading">Height:</p>
-			            <p class="item-value">${item.height.meters} m</p>
-			        </div>
-			        <div>
-			            <p class="item-heading">Diameter:</p>
-			            <p class="item-value">${item.diameter.meters} m</p>
-					</div>
-					 <div>
-			            <p class="item-heading">Mass:</p>
-			            <p class="item-value">${kilosToTons(item.mass.kg)} tons</p>
-			        </div>
-			    `;
-			    itemDescription.innerHTML = `
-			        <p class="item-heading">Description:</p>
-					<p class="item-value">${item.description}</p>
-					<p class="item-value">${item.rocket_name} has ${item.stages} stages and ${item.engines.number} ${item.engines.type} engine(s).</p>
-			    `;
-			    // Add buttons if links exist in API
-			    if (item.wikipedia) {
-			        wikiButton.innerHTML = `
-			            <a href="${item.wikipedia}" title="Visit rocket Wikipedia page" role="link" target="_blank">Wikipedia page <i class="fas fa-external-link-alt"></i></a>
-			        `;
-			        itemButtonContainer.appendChild(wikiButton);
-			    } else {
-			        wikiButton.innerHTML = "";
-			    }
-			    if (item.flickr_images[0]) {
-			        imagesButton.innerHTML = `
-			            <a href="${item.flickr_images[0]}" title="See more photos" role="link" target="_blank">See photos <i class="fas fa-external-link-alt"></i></a>
-			        `;
-			        itemButtonContainer.appendChild(imagesButton);
-			    } else {
-			        imagesButton.innerHTML = "";
-			    }
-			    // Append elements to DOM
-			    flexDiv.appendChild(itemImg);
-			    flexDiv.appendChild(itemDetails);
-			    itemContainer.appendChild(itemHeading);
-			    itemContainer.appendChild(flexDiv);
-			    itemContainer.appendChild(itemDescription);
-			    itemContainer.appendChild(itemButtonContainer);
-			    rockets.parentContainer.appendChild(itemContainer);
-			} 
+		    // Add content to elements
+		    itemImg.innerHTML = `
+		        <img src=${imageSrc}>
+		    `;
+		    itemHeading.innerHTML = `${item.rocket_name}`;
+		    itemDetails.innerHTML = `
+		        <div>
+		            <p class="item-heading">Status:</p>
+		            <p class="item-value" ${textColor}>${status}</p>
+		        </div>
+		        <div>
+		            <p class="item-heading">Country:</p>
+		            <p class="item-value">${item.country}</p>
+		        </div>
+		        
+		        <div>
+		            <p class="item-heading">First flight:</p>
+		            <p class="item-value">${dateConverterShort(item.first_flight)}</p>
+		        </div>
+		        <div>
+		            <p class="item-heading">Height:</p>
+		            <p class="item-value">${item.height.meters} m</p>
+		        </div>
+		        <div>
+		            <p class="item-heading">Diameter:</p>
+		            <p class="item-value">${item.diameter.meters} m</p>
+				</div>
+				 <div>
+		            <p class="item-heading">Mass:</p>
+		            <p class="item-value">${kilosToTons(item.mass.kg)} tons</p>
+		        </div>
+		    `;
+		    itemDescription.innerHTML = `
+		        <p class="item-heading">Description:</p>
+				<p class="item-value">${item.description}</p>
+				<p class="item-value">${item.rocket_name} has ${item.stages} stages and ${item.engines.number} ${item.engines.type} engine(s).</p>
+		    `;
+		    // Add buttons if links exist in API
+		    if (item.wikipedia) {
+		        wikiButton.innerHTML = `
+		            <a href="${item.wikipedia}" title="Visit rocket Wikipedia page" role="link" target="_blank">Wikipedia page <i class="fas fa-external-link-alt"></i></a>
+		        `;
+		        itemButtonContainer.appendChild(wikiButton);
+		    } else {
+		        wikiButton.innerHTML = "";
+		    }
+		    if (item.flickr_images[0]) {
+		        imagesButton.innerHTML = `
+		            <a href="${item.flickr_images[0]}" title="See more photos" role="link" target="_blank">See photos <i class="fas fa-external-link-alt"></i></a>
+		        `;
+		        itemButtonContainer.appendChild(imagesButton);
+		    } else {
+		        imagesButton.innerHTML = "";
+		    }
+		    // Append elements to DOM
+		    flexDiv.appendChild(itemDetails);
+		    flexDiv.appendChild(itemImg);
+		    itemContainer.appendChild(itemHeading);
+		    itemContainer.appendChild(flexDiv);
+		    itemContainer.appendChild(itemDescription);
+		    itemContainer.appendChild(itemButtonContainer);
+		    rockets.parentContainer.appendChild(itemContainer);
+		} 
+	}
+	// Find item image
+	function findImage(item) {
+		let imagePath = "images/rocket",
+			imageTitle = null;
+		const fallbackImage = "_fallback.png",
+			rocketImages = [
+			"falcon1",
+			"falcon9",
+			"falconheavy",
+			"starship"
+		];
+		// Check if rocket exists in list of images
+		for (let i = 0; i < rocketImages.length; i++) {
+			if (rocketImages[i] === item.rocket_id) {
+				imageTitle = rocketImages[i] + ".jpg";
+			}
 		}
+		
+		if (!imageTitle) {
+			return imagePath + fallbackImage;
+		} else {
+			return imagePath + "_" + imageTitle;
+		}
+	}
 	// Convert date
 	function dateConverterShort(date) {
 		const launchDate = new Date(date);
