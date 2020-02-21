@@ -731,6 +731,36 @@ textarea {
 		max-width: 50%;
 		margin: 0 auto;
 	}
+
+	/* About
+	-----------------*/
+	#about-container .item-container > div {
+		flex-direction: column-reverse;
+	}
+	#about-container .item-container .item-img {
+		min-height: 200px;
+		max-width: 100%;
+		background-size: 600px 400px;
+	}
+	#about-container .item-details {
+
+	}
+	#about-container .item-details p {
+		margin: 0 auto;
+	}
+	#about-container .item-details h3 {
+		display: block;
+	}
+	#about-container .button {
+		padding: 5px;
+		margin-top: 10px;
+		display: block;
+	}
+	/* Contact
+	-------------------*/
+	#contact-container {
+		width: 96%;
+	}
 }
 @media screen and (max-width: 480px) {
 
