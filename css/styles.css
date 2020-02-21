@@ -718,6 +718,19 @@ textarea {
 		width: 40%;
 		margin: 0 10px;
 	}
+
+	/* Rockets 
+	----------------*/
+	#rockets-container .item-container {
+		width: 96%;
+	}
+	#rockets-container .item-container > div {
+		flex-direction: column;
+	}
+	#rockets-container .item-img img {
+		max-width: 50%;
+		margin: 0 auto;
+	}
 }
 @media screen and (max-width: 480px) {
 
