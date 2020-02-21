@@ -273,7 +273,9 @@ p, input, figcaption, #contact-form .form-error {
 	left: 40px;
 	background: url(../images/spacex_logo_white.png) no-repeat center/contain;
 }
-
+#page-header #hamburger-menu {
+	display: none;
+}
 #page-header #main-navigation {
 	width: 481px;
 	margin-left: -240.5px;
@@ -282,6 +284,9 @@ p, input, figcaption, #contact-form .form-error {
 	left: 50%;
 	bottom: 0;
 	font-size: 1.4rem;
+}
+#main-navigation #menu-close {
+	display: none;
 }
 /* Page footer
 ------------------------- */
@@ -644,7 +649,7 @@ textarea {
 	}
 }
 
-@media screen and (min-width: 481px) and (max-width: 800px) {
+@media screen and (max-width: 800px) {
 
 	/* TABLET GLOBAL 
 	--------------------*/
@@ -766,8 +771,70 @@ textarea {
 
 	#background-image {
 		background-image: url('../images/spacex-hero-img_400_o72.jpg');
-		max-width: 400px;
+		max-width: 481px;
 		/* IMAGE MUST BE EDITED: 480px */
 	}
-
+	/* Mobile header
+	------------------ */
+	#page-header {
+		width: 100%;
+	}
+	#page-header #logo {
+		top: 40px;
+	}
+	#page-header #hamburger-menu {
+		display: inline-block;
+		position: absolute;
+		top: 40px;
+		right: 40px;
+		font-size: 4.5rem;
+	}
+	#page-header #main-navigation {
+		display: block;
+		position: static;
+		background-color: #000;
+		width: 100%;
+		margin: 150px 0 0 0;
+	}
+	#main-navigation #menu-close {
+		display: block;
+		padding: 5px 0;
+		font-size: 4.5rem;
+	}
+	#main-navigation #menu-close i {
+		color: #C93C39;
+	}
+	nav ul li {
+		display: block;
+		padding: 40px 0;
+		border: 1px solid #fff;
+	}
 }
+
+/* 
+#page-header #main-navigation {
+	width: 481px;
+	margin-left: -240.5px;
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	font-size: 1.4rem;
+}
+
+nav ul {
+	padding-left: 0;
+	margin: 0;
+}
+nav ul li {
+	display: inline-block;
+	padding: 3px 5px;
+}
+#page-header a,
+#page-footer a {
+	width: 100%;
+	height: 100%;
+	display: block;
+	text-decoration: none;
+	color: #fff;
+} */
