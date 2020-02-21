@@ -573,7 +573,7 @@ PAGES
 #contact-container {
 	width: 65%;
 }
-#contact-container .item-container{
+#contact-container .item-container {
 	padding: 20px 0;
 }
 #contact-form {
@@ -609,8 +609,8 @@ textarea {
 #contact-form i {
 	color: #3FD201;
 	position: absolute;
-	margin-top: -25px;
-	right: -18px;
+	margin-top: 8px;
+	right: -20px;
 }
 /* Form validation */
 #contact-form .form-error {
