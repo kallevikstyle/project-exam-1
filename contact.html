@@ -39,26 +39,30 @@
 								 <label for="firstname">First&nbsp;name:</label>
 						    </p>
 						    <input type="text" id="firstname" name="firstname">
+						    <i id="firstname-check" class="fas fa-check"></i>
 							<div class="form-error" id="firstname-err">Please enter a valid name</div>
 						    <p>
 						     	<label for="lastname">Last&nbsp;name:</label>
 			     			</p>
 					        <input type="text" id="lastname" name="lastname">
+					        <i id="lastname-check" class="fas fa-check"></i>
 							<div class="form-error" id="lastname-err">Please enter a valid name</div>
 						    <p>
 						     	<label for="email">E-mail:</label>
 						    </p>
 						        <input type="email" id="email" name="email">
+						        <i id="email-check" class="fas fa-check"></i>
 								<div class="form-error" id="email-err">Enter a valid email address</div>
 						    <p>
 						        <label for="message">Your&nbsp;message:</label>
 					    	</p>
 					        	<textarea id="message" name="message" maxlength="500" rows="8"></textarea>
+					        	<i id="message-check" class="fas fa-check"></i>
 								<div class="form-error" id="message-err">Please enter a message</div>
 				     	</div>
 				   
-				     <div id="message-submit" class="info-button button">Send message &gt;&gt;</div>
-				     
+				     <div id="message-submit" class="info-button button"><a href="#" title="Send message">Send message &gt;&gt;</a></div>
+				     <div id="message-success">Your message has been sent!</div>
 				</form>
 				</div>
 			</section>

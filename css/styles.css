@@ -571,6 +571,7 @@ PAGES
 #contact-form div {
 	width: 70%;
 	margin: 0 auto;
+	position: relative;
 
 }
 #contact-form p {
@@ -583,47 +584,43 @@ textarea {
 	width: 100%;
 	box-sizing: border-box;
 }
+#contact-form textarea {
+	margin-bottom: -4px;
+}
 #contact-form .button {
-	margin-top: 25px;
+	margin-top: 30px;
 	padding: 5px;
-	color: #000;
 	background-color: #ebe756;
 }
-/* Form error messages */
+#contact-form .button a {
+	color: #000;
+}
+#contact-form i {
+	color: #3FD201;
+	position: absolute;
+	margin-top: -25px;
+	right: -18px;
+}
+/* Form validation */
 #contact-form .form-error {
 	display: none;
-	/* display: inline-block; */
+	padding: 2px;
 	width: auto;
 	float: right;
 	text-align: right;
-	color: #C93C39;
+	color: #fff;
 	font-size: 0.9rem;
-	/* border: 1px dashed red; */
+	background-color: #c93c39;
+	border: 1px dashed #c93c39; 
 }
-#contact-form #firstname-err {
-	/* display: inline-block; */
+#contact-form i {
+	display: none;
 }
-#firstname {
-	/* border: 2px solid #C93C39; */
+#contact-form #message-success {
+	margin-top: 20px;
+	display: none;
 }
-#contact-form #lastname-err {
-	
-}
-#lastname {
-	/* border: 2px solid #C93C39; */
-}
-#contact-form #email-err {
-	
-}
-#email {
-	/* border: 2px solid #C93C39; */
-}
-#contact-form #message-err {
-	
-}
-#message {
-	/* border: 2px solid #C93C39; */
-}
+
 
 /* MEDIA QUERIES 
 -------------------------*/
