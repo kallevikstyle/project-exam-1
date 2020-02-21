@@ -646,9 +646,16 @@ textarea {
 
 @media screen and (min-width: 481px) and (max-width: 800px) {
 
+	/* TABLET GLOBAL 
+	--------------------*/
 	#background-image {
 		background-image: url('../images/spacex-hero-img_800_o72.jpg');
 		max-width: 800px;
+	}
+	/* Item containers */
+	.item-buttons .button a {
+		padding-top: 15px;
+		padding-bottom: 15px;
 	}
 
 	/* Tablet header
@@ -690,6 +697,27 @@ textarea {
 		font-size: 1.6em;
 	}
 
+	/* Launches 
+	--------------*/
+	#launches-container .item-container > div {
+		flex-direction: column;
+	}
+	#launches-container img {
+		margin: 0 auto;
+	}
+	#launches-container .item-details > div {
+		/*flex-direction: column;*/
+	}
+	#launches-container .item-details p {
+		flex: 1;
+	}
+	#launches-container .item-container .item-buttons {
+		flex-direction: row;
+	}
+	#launches-container .item-buttons .button {
+		width: 40%;
+		margin: 0 10px;
+	}
 }
 @media screen and (max-width: 480px) {
 
