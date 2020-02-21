@@ -246,7 +246,7 @@ h1, h2, #main-navigation, #time-left span, .button, #cta-down {
 h3, h4, .mission-head, .item-heading, .item-list .load-more-button, .item-buttons .button, #search-tools a {
 	font-family: "worksans-regular", Arial, sans-serif;
 }
-p, input, figcaption {
+p, input, figcaption, #contact-form .form-error {
 	font-family: "montserrat-light", helvetica, sans-serif;
 }
 
@@ -584,10 +584,45 @@ textarea {
 	box-sizing: border-box;
 }
 #contact-form .button {
-	margin-top: 10px;
+	margin-top: 25px;
 	padding: 5px;
 	color: #000;
 	background-color: #ebe756;
+}
+/* Form error messages */
+#contact-form .form-error {
+	display: none;
+	/* display: inline-block; */
+	width: auto;
+	float: right;
+	text-align: right;
+	color: #C93C39;
+	font-size: 0.9rem;
+	/* border: 1px dashed red; */
+}
+#contact-form #firstname-err {
+	/* display: inline-block; */
+}
+#firstname {
+	/* border: 2px solid #C93C39; */
+}
+#contact-form #lastname-err {
+	
+}
+#lastname {
+	/* border: 2px solid #C93C39; */
+}
+#contact-form #email-err {
+	
+}
+#email {
+	/* border: 2px solid #C93C39; */
+}
+#contact-form #message-err {
+	
+}
+#message {
+	/* border: 2px solid #C93C39; */
 }
 
 /* MEDIA QUERIES 
