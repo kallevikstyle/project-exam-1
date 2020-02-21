@@ -86,7 +86,7 @@ nav ul li {
 }
 
 main > * {
-	width: 55%;
+	width: 96%;
 	margin: 0 auto;	
 }
 main > *:first-child {
@@ -94,8 +94,7 @@ main > *:first-child {
 }
 .item-list {
 	flex-direction: column;
-	/*justify-content: center;*/
-	min-width: 400px;
+	min-width: 440px;
 	margin: 0 8px;
 	border: 1px solid #fff;
 	border-radius: 4px;
@@ -174,6 +173,7 @@ main > *:first-child {
 .item-details p {
 	padding-top: 3px;
 	margin: 0;
+	max-width: 600px;
 }
 .item-details > div {
 	display: flex;
@@ -274,8 +274,8 @@ p, input, figcaption, #contact-form .form-error {
 }
 
 #page-header #main-navigation {
-	width: 500px;
-	margin-left: -250px;
+	width: 481px;
+	margin-left: -240.5px;
 	text-align: center;
 	position: absolute;
 	left: 50%;
@@ -324,6 +324,7 @@ PAGES
 --------------*/
 
 #top-container {
+	width: 68%;
 	min-height: 100vh;
 	padding-top: 0;
 	/* border: 1px dotted grey; */
@@ -332,6 +333,7 @@ PAGES
 	content: "\00a0";
 }
 #bottom-container {
+	width: 65%;
 }
 #countdown {
 	flex-direction: column;
@@ -424,9 +426,6 @@ PAGES
 
 /* Launches
 ----------------------*/
-#launches-search {
-	
-}
 #launches-search > div {
 	text-align: center;
 }
@@ -455,8 +454,6 @@ PAGES
 	/*background-color: white;*/
 }
 #launches {
-	/* border: 1px dotted grey; */
-	width: 96%;
 	margin-top: 40px;
 }
 #launches-container {
@@ -480,15 +477,12 @@ PAGES
 }
 /* Rockets
 ---------------------*/
-#rockets-container {
-	/*border: 1px dashed white;*/
-	width: 96%;
-}
 #rockets-container .item-list {
 	border: none;
 }
 #rockets-container .item-container {
 	width: 80%;
+	max-width: 775px;
 	margin-top: 14px;
 	font-size: 1.2rem;
 }
@@ -530,26 +524,35 @@ PAGES
 /* About
 --------------*/
 #about-container {
-	width: 96%;
+	max-width: 1200px;
 }
-
 #about-container .item-container {
 	position: relative;
 	border: none;
 }
-
+#about-container .item-img {
+	max-width: 600px;
+}
+#about-container .item-details {
+	max-width: 670px;
+}
+#about-container h3 {
+	display: inline-block;
+}
 #about-container p {
 	margin-bottom: 10px;
+	margin-right: 0;
 }
 #about-spacex p:last-of-type {
 	margin-bottom: 40px;
 }
 #about-container .button {
 	display: inline-block;
-	margin: 0 14px 14px 0;
-	position: absolute;
-	bottom: 0;
-	right: 0;
+	margin: 0 auto;
+	/*margin: 0 14px 14px 0;*/
+	/*position: absolute;*/
+	/*bottom: 0;*/
+	/*right: 0;*/
 }
 #about-container .button i {
 	font-size: .8rem;
@@ -562,6 +565,9 @@ PAGES
 }
 /* Contact
 -------------*/
+#contact-container {
+	width: 65%;
+}
 #contact-container .item-container{
 	padding: 20px 0;
 }
