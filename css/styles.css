@@ -769,7 +769,7 @@ textarea {
 		width: 96%;
 	}
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 481px) {
 
 	#background-image {
 		background-image: url('../images/spacex-hero-img_400_o72.jpg');
