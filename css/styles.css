@@ -174,6 +174,7 @@ main > *:first-child {
 	padding-top: 3px;
 	margin: 0;
 	max-width: 600px;
+	font-size: 1.2rem;
 }
 .item-details > div {
 	display: flex;
@@ -335,6 +336,7 @@ PAGES
 #bottom-container {
 	width: 65%;
 }
+
 #countdown {
 	flex-direction: column;
 	margin-top: 250px;
@@ -358,11 +360,14 @@ PAGES
 	margin-left: 0;
 }
 #countdown .item-container {
-	/*display: none;*/
-	/*opacity: 0;*/
 	border-top: none;
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
+	max-width: 900px;
+}
+#countdown #next-launch-info .button {
+	max-width: 904px;
+	margin: 0 auto;
 }
 /* CTA navigation */
 #cta-navigation {
@@ -644,8 +649,47 @@ textarea {
 	#background-image {
 		background-image: url('../images/spacex-hero-img_800_o72.jpg');
 		max-width: 800px;
+	}
+
+	/* Tablet header
+	------------------*/
+	#page-header #logo {
+		top: 10px;
+		left: 20px;
+	}
+
+	/* Tablet footer 
+	-----------------*/
+	#page-footer {
+		height: 200px;
+	}
+	#page-footer > div {
+		padding: 0 5px;
+	}
+	#page-footer #social-links {
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+	#page-footer #social-links div {
+		margin: 5px 0 0 0;
 
 	}
+
+	/* Tablet pages
+	---------------*/
+
+	/* Index */
+	#top-container,
+	#bottom-container {
+		width: 96%;
+	}
+	#countdown #time-left {
+		font-size: 1.2rem;
+	}
+	#countdown #time-left span {
+		font-size: 1.6em;
+	}
+
 }
 @media screen and (max-width: 480px) {
 
