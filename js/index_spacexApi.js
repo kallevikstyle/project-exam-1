@@ -1,9 +1,56 @@
+// Sections Module
+const indexSections = (function() {
+    let countdown = {
+        apiURL: "launches/next",
+        parentContainer: document.querySelector('#countdown #time-left'),
+        allData: [],
+        getData: function(data) {
+            this.allData = data;
+            displayCountdown(this);
+        }
+    };
+
+// Display countdown on page
+function displayCountdown(section) {
+    const countdownTail = document.querySelector('#countdown-tail'),
+        launchTime = new Date(section.allData.launch_date_local).getTime();
+    // Create the timer
+    let countdown = setInterval(function() {
+        const now = new Date().getTime();
+        // Calculate remaining time
+        let timeLeft = launchTime - now,
+            days = Math.floor(timeLeft / (1000 * 60 * 60 * 24)),
+            hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+            minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)),
+            seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        // Display countdown on page
+        section.parentContainer.innerHTML = `
+            <p><span>${days}</span>&nbsp;days <span>${hours}</span>&nbsp;hours <span>${minutes}</span>&nbsp;minutes <span>${seconds}</span>&nbsp;seconds</p>
+        `;
+        // When countdown is complete
+        if (timeLeft < 0) {
+            clearInterval(countdown);
+            section.parentContainer.innerHTML = `
+            <p><span>${section.allData.rocket.rocket_name.toUpperCase()} JUST LAUNCHED!</span></p>
+        `;
+            countdownTail.innerHTML = `
+            <i>stay tuned for updates</i>
+        `;
+        }
+    }, 1000);
+}
+
+    return {
+        countdown
+    }
+})();
+
 // Load API from SpaceX
-function loadAPI(apiURL, parentContainer, sectionName) {
-    fetch('https://api.spacexdata.com/v3/' + apiURL)
+function loadAPI(section) {
+    fetch('https://api.spacexdata.com/v3/' + section.apiURL)
         .then(result => result.json())
         .then((data) => {
-           getData(data, parentContainer, sectionName);
+           section.getData(data);
         })
         .catch(err => console.log(err));
 };
@@ -22,35 +69,7 @@ function getData(data, parentContainer, sectionName) {
             console.log("Error: Section not found");
     }    
 }
-// Display countdown on page
-function displayCountdown(data, parentContainer) {
-    const countdownTail = document.querySelector('#countdown-tail'),
-        launchTime = new Date(data.launch_date_local).getTime();
-    // Create the timer
-    let countdown = setInterval(function() {
-        const now = new Date().getTime();
-        // Calculate remaining time
-        let timeLeft = launchTime - now,
-            days = Math.floor(timeLeft / (1000 * 60 * 60 * 24)),
-            hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-            minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)),
-            seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        // Display countdown on page
-        parentContainer.innerHTML = `
-            <p><span>${days}</span>&nbsp;days <span>${hours}</span>&nbsp;hours <span>${minutes}</span>&nbsp;minutes <span>${seconds}</span>&nbsp;seconds</p>
-        `;
-        // When countdown is complete
-        if (timeLeft < 0) {
-            clearInterval(countdown);
-            parentContainer.innerHTML = `
-            <p><span>${data.rocket.rocket_name.toUpperCase()} JUST LAUNCHED!</span></p>
-        `;
-            countdownTail.innerHTML = `
-            <i>stay tuned for updates</i>
-        `;
-        }
-    }, 1000);
-}
+
 // Display mission preview sections on page
 function displayMissionPreview(data, parentContainer) {
     const flexDiv = document.createElement('div'),
@@ -108,26 +127,28 @@ function dateConverter(date) {
     const launchDate = new Date(date);
     return launchDate.toDateString();
 };
-
 (function() {
-    const countdownContainer = document.querySelector('#countdown #time-left'),
-        nextMissionContainer = document.querySelector('#countdown .item-container'),
-        lastMissionContainer = document.querySelector('#last-mission .item-container');
-    let sectionName = "";
+    loadAPI(indexSections.countdown);
+})();
+//(function() {
+//    const countdownContainer = document.querySelector('#countdown #time-left'),
+//        nextMissionContainer = document.querySelector('#countdown .item-container'),
+//        lastMissionContainer = document.querySelector('#last-mission .item-container');
+//    let sectionName = "";
 
     // Check if countdown section is present
-    if (countdownContainer) {
-        sectionName = "countdown";
-        loadAPI("launches/next", countdownContainer, sectionName);
-    }
+//    if (countdownContainer) {
+//        sectionName = "countdown";
+//        loadAPI("launches/next", countdownContainer, sectionName);
+//    }
     // Check if 'last-mission' section is present
-    if (lastMissionContainer) {
-        sectionName = "lastMission";
-        loadAPI("launches/latest", lastMissionContainer, sectionName);
-    }
+//    if (lastMissionContainer) {
+//        sectionName = "lastMission";
+//        loadAPI("launches/latest", lastMissionContainer, sectionName);
+//    }
     // Check if 'next mission container' is present
-    if (nextMissionContainer) {
-        sectionName = "nextMission";
-        loadAPI("launches/next", nextMissionContainer, sectionName);
-    }
-})();
+//    if (nextMissionContainer) {
+//        sectionName = "nextMission";
+//        loadAPI("launches/next", nextMissionContainer, sectionName);
+//    }
+//})();
