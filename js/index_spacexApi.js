@@ -17,7 +17,16 @@ const indexSections = (function() {
                 this.allData = data;
                 displayMissionPreview(this);
             }
-        };
+        },
+        lastMissionPreview = {
+            apiURL: "launches/latest",
+            parentContainer: document.querySelector('#last-mission .item-container'),
+            allData: [],
+            getData: function(data) {
+                this.allData = data;
+                displayMissionPreview(this);
+            }
+        };;
 
 // Display countdown on page
 function displayCountdown(section) {
@@ -108,7 +117,8 @@ function dateConverter(date) {
 
     return {
         countdown,
-        nextMissionPreview
+        nextMissionPreview,
+        lastMissionPreview
     }
 })();
 
@@ -121,46 +131,9 @@ function loadAPI(section) {
         })
         .catch(err => console.log(err));
 };
-// Receive data from API
-function getData(data, parentContainer, sectionName) {
-    // Send the data to the correct section
-    switch (sectionName) {
-        case "countdown":
-            displayCountdown(data, parentContainer);
-            break;
-        case "nextMission":
-        case "lastMission":
-            displayMissionPreview(data, parentContainer);
-            break;
-        default:
-            console.log("Error: Section not found");
-    }    
-}
-
 
 (function() {
     loadAPI(indexSections.countdown);
     loadAPI(indexSections.nextMissionPreview);
+    loadAPI(indexSections.lastMissionPreview);
 })();
-//(function() {
-//    const countdownContainer = document.querySelector('#countdown #time-left'),
-//        nextMissionContainer = document.querySelector('#countdown .item-container'),
-//        lastMissionContainer = document.querySelector('#last-mission .item-container');
-//    let sectionName = "";
-
-    // Check if countdown section is present
-//    if (countdownContainer) {
-//        sectionName = "countdown";
-//        loadAPI("launches/next", countdownContainer, sectionName);
-//    }
-    // Check if 'last-mission' section is present
-//    if (lastMissionContainer) {
-//        sectionName = "lastMission";
-//        loadAPI("launches/latest", lastMissionContainer, sectionName);
-//    }
-    // Check if 'next mission container' is present
-//    if (nextMissionContainer) {
-//        sectionName = "nextMission";
-//        loadAPI("launches/next", nextMissionContainer, sectionName);
-//    }
-//})();
