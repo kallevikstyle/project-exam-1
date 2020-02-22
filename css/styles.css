@@ -770,12 +770,37 @@ textarea {
 	}
 }
 @media screen and (max-width: 481px) {
-
+	/* Mobile GLOBAL
+	--------------- */
 	#background-image {
 		background-image: url('../images/spacex-hero-img_400_o72.jpg');
 		max-width: 481px;
 		/* IMAGE MUST BE EDITED: 480px */
 	}
+	.item-list {
+		min-width: 100%;
+		width: 100%;
+		margin: 0;
+	}
+	.mission-head {
+		margin: 0 10px 10px 10px;
+		padding: 10px 0;
+	}
+
+	.mission-head div {
+		
+	}
+	.mission-head .mission-head-date {
+		margin-left: 4px;
+		flex: 10;
+	}
+	.mission-head .mission-head-name {
+		flex: 13;
+	}
+	.mission-head .mission-head-rocket {
+		flex: 6;
+	}
+	
 	/* Mobile header
 	------------------ */
 	#page-header {
@@ -816,5 +841,73 @@ textarea {
 	}
 	#page-header #menu-close a {
 		padding: 5px 0;
+	}
+	/* Mobile footer
+	-------------- */
+	#page-footer {
+		height: 300px;
+		flex-direction: column;
+	}
+	#page-footer #social-links {
+		flex-direction: row;
+		justify-content: center;
+	}
+	#page-footer #social-links div {
+		margin: 10px;
+	}
+
+	/* Mobile Index
+	----------------- */
+	#countdown .item-container > div {
+		flex-direction: column;
+	}
+	#countdown .item-img img {
+		margin: 0 auto;
+	}
+	#bottom-container .item-container > div {
+		flex-direction: column;
+	}
+	#bottom-container .item-img img {
+		margin: 0 auto;
+	}
+
+	/* Mobile Launches
+	-------------- */
+
+
+	/* Mobile Rockets
+	---------------- */
+	#rockets-container {
+		width: 100%;
+	}
+	/* Mobile contact
+	----------------- */
+	#contact-form div {
+		width: 85%;
+	}
+}
+@media screen and (max-width: 340px) {
+	/* GLOBAL */
+	.mission-head .mission-head-date {
+		margin-left: 4px;
+		flex: 12;
+	}
+	.mission-head .mission-head-name {
+		flex: 13;
+	}
+	.mission-head .mission-head-rocket {
+		flex: 6;
+	}
+	/* Header */
+	#page-header #logo {
+		top: 5px;
+	}
+	/* Launches */
+	#search-button {
+		display: block;
+		margin-left: 0;
+	}
+	#search-button a {
+		padding: 12px 12px;
 	}
 }

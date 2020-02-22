@@ -37,7 +37,7 @@ function displayCountdown(data, parentContainer) {
             seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
         // Display countdown on page
         parentContainer.innerHTML = `
-            <p><span>${days}</span> days <span>${hours}</span> hours <span>${minutes}</span> minutes <span>${seconds}</span> seconds</p>
+            <p><span>${days}</span>&nbsp;days <span>${hours}</span>&nbsp;hours <span>${minutes}</span>&nbsp;minutes <span>${seconds}</span>&nbsp;seconds</p>
         `;
         // When countdown is complete
         if (timeLeft < 0) {
