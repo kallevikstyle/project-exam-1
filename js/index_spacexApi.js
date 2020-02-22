@@ -26,7 +26,7 @@ const indexSections = (function() {
                 this.allData = data;
                 displayMissionPreview(this);
             }
-        };;
+        };
 
 // Display countdown on page
 function displayCountdown(section) {
