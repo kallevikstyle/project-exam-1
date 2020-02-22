@@ -87,6 +87,9 @@ nav ul li {
 .invisible {
 	visibility: hidden;
 }
+.undisplay {
+	display: none;
+}
 main > * {
 	width: 96%;
 	margin: 0 auto;	

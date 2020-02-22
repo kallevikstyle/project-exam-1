@@ -133,7 +133,15 @@ function loadAPI(section) {
 };
 
 (function() {
+    const showNextMission = document.querySelector('#show-next-mission');
+
     loadAPI(indexSections.countdown);
     loadAPI(indexSections.nextMissionPreview);
     loadAPI(indexSections.lastMissionPreview);
+
+    // Eventlistener for 'show details' button
+    showNextMission.addEventListener('click', function(e) {
+        e.preventDefault();
+        indexSections.nextMissionPreview.parentContainer.classList.toggle('undisplay');
+    });
 })();
