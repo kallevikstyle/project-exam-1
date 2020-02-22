@@ -26,29 +26,39 @@ const ctaMenu = (function() {
 })();
 
 (function() {
+    const rocketSymbol = document.querySelector('#cta-circle');
+
     // Hover states for cta buttons
+    // -----------------------------
     // Rockets
     ctaMenu.rockets.divElement.addEventListener('mouseover', function() {
         ctaMenu.rockets.divElement.style.backgroundImage = ctaMenu.rockets.hoverState;
+        rocketSymbol.style.transform = "rotate(-90deg)";
     });
     ctaMenu.rockets.divElement.addEventListener('mouseout', function() {
         ctaMenu.rockets.divElement.style.backgroundImage = ctaMenu.rockets.normalState;
+        rocketSymbol.style.transform = "rotate(0deg)";
     });
     // Launches
     ctaMenu.launches.divElement.addEventListener('mouseover', function() {
         ctaMenu.launches.divElement.style.backgroundImage = ctaMenu.launches.hoverState;
+        rocketSymbol.style.transform = "rotate(90deg)";
     });
     ctaMenu.launches.divElement.addEventListener('mouseout', function() {
         ctaMenu.launches.divElement.style.backgroundImage = ctaMenu.launches.normalState;
+        rocketSymbol.style.transform = "rotate(0deg)";
     });
     // Down
     ctaMenu.down.divElement.addEventListener('mouseover', function() {
         ctaMenu.down.divElement.style.backgroundImage = ctaMenu.down.hoverState;
+        rocketSymbol.style.transform = "rotate(180deg)";
     });
     ctaMenu.down.divElement.addEventListener('mouseout', function() {
         ctaMenu.down.divElement.style.backgroundImage = ctaMenu.down.normalState;
+        rocketSymbol.style.transform = "rotate(0deg)";
     });
     // Active states
+    // -----------------------------
     // Rockets
     ctaMenu.rockets.divElement.addEventListener('mousedown', function() {
         ctaMenu.rockets.divElement.style.backgroundImage = ctaMenu.rockets.activeState;

@@ -71,7 +71,8 @@ nav ul li {
 	padding: 3px 5px;
 }
 #page-header a,
-#page-footer a {
+#page-footer a,
+#cta-navigation a {
 	width: 100%;
 	height: 100%;
 	display: block;
@@ -405,7 +406,9 @@ PAGES
 #cta-circle {
 	width: 24%;
 	font-size: 4rem;
-	/* border: 1px dotted red; */
+	-webkit-transition: all 0.5s ease-out;
+  	-moz-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
 }
 #cta-circle i {
 	transform: rotate(-50grad);
@@ -434,6 +437,7 @@ PAGES
 #cta-down a {
 	color: #ebe756;
 	font-size: 1.1rem;
+	padding: 0;
 }
 
 #last-mission {
