@@ -3,7 +3,6 @@
         menuClose = document.querySelector('#menu-close'),
         mainNavigation = document.querySelector('#main-navigation'),
         mobileScreen = window.matchMedia("(max-width: 481px)");
-    let screenWidth = window.innerWidth;
 
     // Set menu to invisible if screen is 481px or less
     if (mobileScreen.matches) {
@@ -18,7 +17,7 @@
     });
     // Add eventlistener to catch window resize to larger width
     window.addEventListener('resize', function() {
-        if (screenWidth > 481) {
+        if (this.window.innerWidth > 481) {
             mainNavigation.classList.remove('invisible');
         } 
     })
