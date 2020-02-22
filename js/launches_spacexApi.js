@@ -148,6 +148,17 @@ function loadAPI(loadedLaunches) {
             // Send data to section object and call displayMissionHeads
             loadedLaunches.getData(data);
             displayMissionHeads(loadedLaunches, loadedLaunches.allData);
+            // Open requested mission container from index CTA
+            if (window.location.hash.includes("flight")) {
+
+                const flightNumber = parseInt(window.location.hash.match(/\d+/g)[0]);
+                    launch = data.filter(function(data) {
+                        return data.flight_number === flightNumber;
+                    });
+            }
+            // Open mission container and scroll to id flightNumber
+            
+            
         })
         .catch(err => console.log(err));
 };
@@ -198,7 +209,7 @@ function displayMissionHeads(loadedLaunches, data) {
                     displayMissionDetails(data, missionWrapper);
                 }
             });
-        } else if (i === amount && amount < data.length) {            
+        } else if (i === amount && amount < data.length) {
             // Create a 'load more' button from module object
             loadedLaunches.loadMore();
             // Event listener for button
@@ -228,9 +239,7 @@ function displayMissionDetails(data, parentContainer) {
         wikiButton = document.createElement('div');
     let missionPatch = "",
         missionDescription = "",
-        launchDate = null,
-        videoLink = null,
-        wikiLink = null;
+        launchDate = null;
     // Load fallback image if not present in API
     if (!launch[0].links.mission_patch_small) {
         missionPatch = "images/rocket_fallback.png";
@@ -359,7 +368,9 @@ function dateConverterShort(date) {
 
     return day + "." + month + "." + year;
 }
-
+function myFunction() {
+    console.log('Success');
+}
 (function() {
     const searchField = document.querySelector('#search-field'),
         searchButton = document.querySelector('#search-button'),
@@ -375,6 +386,21 @@ function dateConverterShort(date) {
     if (loadedLaunches.comingLaunches.parentContainer) {
         loadAPI(loadedLaunches.comingLaunches);
     }
+    
+    
+    
+    // Open requested mission container from index CTA
+    if (window.location.hash.includes("flight")) {
+        document.querySelector('#flight92').addEventListener('load', function() {
+            location.hash = window.location.hash;
+        });
+        
+        //const flightNumber = parseInt(window.location.hash.match(/\d+/g)[0]);
+        //    launch = data.filter(function(data) {
+        //        return data.flight_number === flightNumber;
+        //    });
+    }
+    // Open mission container and scroll to id flightNumber
 
     // Search event listeners
     // -----------------------
