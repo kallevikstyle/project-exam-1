@@ -861,6 +861,17 @@ textarea {
 	#countdown .item-container > div {
 		flex-direction: column;
 	}
+	#countdown #time-left {
+		margin-bottom: 20px;
+	}
+	#countdown #time-left p {
+		text-align: center;
+	}
+	#countdown #time-left span {
+		display: block;
+		font-size: 3.6rem;
+		margin: 0;
+	}
 	#countdown .item-img img {
 		margin: 0 auto;
 	}
@@ -904,6 +915,9 @@ textarea {
 	/* Header */
 	#page-header #logo {
 		top: 5px;
+	}
+	#page-header #hamburger-menu {
+		top: 40px;
 	}
 	/* Launches */
 	#search-button {
