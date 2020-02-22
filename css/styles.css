@@ -56,6 +56,7 @@ a {
 	text-decoration: underline;
 	color: #ebe756;
 }
+
 #background-image {
 	background: url('../images/spacex-hero-img_1920_o72.jpg') no-repeat fixed center/cover;
 	margin: 0 auto;
@@ -70,6 +71,7 @@ nav ul li {
 	display: inline-block;
 	padding: 3px 5px;
 }
+
 #page-header a,
 #page-footer a,
 #cta-navigation a {
@@ -218,6 +220,7 @@ main > *:first-child {
 	text-decoration: none;
 	padding: 6px 8px;
 	color: #fff;
+	box-sizing: border-box;
 }
 .info-button {
 	background-color: #06204A;
@@ -232,7 +235,17 @@ main > *:first-child {
 .item-list .item-buttons i {
 	font-size: .8rem;
 }
-
+/* Buttons interaction */
+.button a:hover {
+	background-color: #EBE756;
+	color: #000;
+	/* padding: 0; */
+}	
+.button a:active {
+	-webkit-box-shadow: inset 2px 4px 11px 1px rgba(0,0,0,0.6);
+	-moz-box-shadow: inset 2px 4px 11px 1px rgba(0,0,0,0.6);
+	box-shadow: inset 2px 4px 11px 1px rgba(0,0,0,0.6);
+}
 /* Form fields */
 input[type=text],
 input[type=email],
@@ -291,8 +304,17 @@ p, input, figcaption, #contact-form .form-error {
 	bottom: 0;
 	font-size: 1.4rem;
 }
+#main-navigation a:hover {
+	border-top: 1px solid #fff;
+}
+#main-navigation a:active {
+	color: #EBE756;
+}
 #main-navigation #menu-close {
 	display: none;
+}
+.active {
+	border-bottom: 1px solid #EBE756;
 }
 /* Page footer
 ------------------------- */
@@ -492,9 +514,6 @@ PAGES
 	font-size: 1.4rem;
 	padding: 0 10px;
 }
-#launches-container .item-container .button {
-	/*font-size: 1.2rem;*/
-}
 /* Rockets
 ---------------------*/
 #rockets-container .item-list {
@@ -614,12 +633,20 @@ textarea {
 	margin-bottom: -4px;
 }
 #contact-form .button {
+	color: #fff;
 	margin-top: 30px;
-	padding: 5px;
-	background-color: #ebe756;
+	padding: 10px;
+	background-color: #06204A;
 }
-#contact-form .button a {
+
+#message-submit:hover {
+	background-color: #EBE756;
 	color: #000;
+}	
+#message-submit:active {
+	-webkit-box-shadow: inset 2px 4px 11px 1px rgba(0,0,0,0.6);
+	-moz-box-shadow: inset 2px 4px 11px 1px rgba(0,0,0,0.6);
+	box-shadow: inset 2px 4px 11px 1px rgba(0,0,0,0.6);
 }
 #contact-form i {
 	color: #3FD201;

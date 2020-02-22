@@ -14,7 +14,6 @@ const indexSections = (function() {
             parentContainer: document.querySelector('#countdown .item-container'),
             allData: [],
             getData: function(data) {
-                console.log(data);
                 this.allData = data;
                 displayMissionPreview(this);
             }
@@ -102,7 +101,7 @@ function displayMissionPreview(section) {
         </div>
     `;
     itemButton.innerHTML = `
-        <a href="launches.html#flight${section.allData.flight_number}">More info &gt;&gt;</a>
+        <a href="launches.html" title="See all launches" role="link">See more launches &gt;&gt;</a>
     `;
     // Append elements to DOM
     flexDiv.appendChild(itemImg);

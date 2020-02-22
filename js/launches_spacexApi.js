@@ -386,21 +386,6 @@ function myFunction() {
     if (loadedLaunches.comingLaunches.parentContainer) {
         loadAPI(loadedLaunches.comingLaunches);
     }
-    
-    
-    
-    // Open requested mission container from index CTA
-    if (window.location.hash.includes("flight")) {
-        document.querySelector('#flight92').addEventListener('load', function() {
-            location.hash = window.location.hash;
-        });
-        
-        //const flightNumber = parseInt(window.location.hash.match(/\d+/g)[0]);
-        //    launch = data.filter(function(data) {
-        //        return data.flight_number === flightNumber;
-        //    });
-    }
-    // Open mission container and scroll to id flightNumber
 
     // Search event listeners
     // -----------------------
