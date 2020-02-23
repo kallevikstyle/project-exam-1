@@ -101,7 +101,7 @@ function displayMissionPreview(section) {
         </div>
     `;
     itemButton.innerHTML = `
-        <a href="launches.html" title="See all launches" role="link">See more launches &gt;&gt;</a>
+        <a href="launches.html" title="See all launches" role="link">See more space launches &gt;&gt;</a>
     `;
     // Append elements to DOM
     flexDiv.appendChild(itemImg);

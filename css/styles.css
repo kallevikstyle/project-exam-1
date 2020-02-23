@@ -534,11 +534,17 @@ PAGES
 #launches {
 	margin-top: 40px;
 }
+#launches-intro {
+	max-width: 600px;
+	margin: 0 auto;
+}
 #launches-container {
 	flex-wrap: wrap;
 	justify-content: center;
 }
-
+#launches-container .mission-head a {
+	display: inline;
+}
 #launches-container section {
 	flex: 1;
 	height: 100%;
@@ -552,6 +558,10 @@ PAGES
 }
 /* Rockets
 ---------------------*/
+#rockets-intro {
+	max-width: 600px;
+	margin: 0 auto;
+}
 #rockets-container .item-list {
 	border: none;
 }
