@@ -207,6 +207,7 @@ function displayMissionHeads(loadedLaunches, data) {
                     removeOpenItemContainer();
                 } else {
                     displayMissionDetails(data, missionWrapper);
+                    location.hash = "#" + missionWrapper.id;
                 }
             });
         } else if (i === amount && amount < data.length) {

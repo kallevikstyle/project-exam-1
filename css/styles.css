@@ -56,7 +56,22 @@ a {
 	text-decoration: underline;
 	color: #ebe756;
 }
-
+#top {
+	margin-top: 100px;
+	text-align: center;
+	font-size: 3rem;
+	color: #C93C39;
+}
+#top a {
+	color: #fff;
+	padding: 5px 10px;
+}
+#top a:hover {
+	border: 1px solid #fff;
+}
+#top a:active {
+	color: #C93C39;
+}
 #background-image {
 	background: url('../images/spacex-hero-img_1920_o72.jpg') no-repeat fixed center/cover;
 	margin: 0 auto;
@@ -82,7 +97,7 @@ nav ul li {
 	color: #fff;
 }
 #page-header a:visited {
-	color: #fff;
+	/* color: #fff; */
 }
 .flex {
 	display: flex;
@@ -126,6 +141,7 @@ main > *:first-child {
 	background-color: transparent;
 	color: #fff;
 	border-bottom: 1px solid #fff;
+	cursor: default;
 }
 .mission-head {
 	flex-wrap: nowrap;
@@ -136,6 +152,13 @@ main > *:first-child {
 	text-align: center;
 	border-radius: 2px;
 	cursor: pointer;
+}
+.mission-head:hover {
+	background-color: #EBE756;
+}
+.mission-head:active {
+	background-color: #06204A;
+	color: #fff;
 }
 
 .mission-head div {
@@ -461,6 +484,14 @@ PAGES
 	font-size: 1.1rem;
 	padding: 0;
 }
+#cta-down a,
+#cta-down a:hover,
+#cta-down:active {
+	background-color: transparent;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
 
 #last-mission {
 	margin: 200px 0;
@@ -488,12 +519,17 @@ PAGES
 }
 #reset-search {
 	display: none;
-
 }
 #search-tools #reset-search a {
 	color: #C93C39;
 	cursor: pointer;
 	/*background-color: white;*/
+}
+#search-tools #reset-search a:hover {
+	color: #EBE756;
+}
+#search-tools #reset-search a:active {
+	font-style: italic;
 }
 #launches {
 	margin-top: 40px;
@@ -812,6 +848,10 @@ textarea {
 		max-width: 481px;
 		/* IMAGE MUST BE EDITED: 480px */
 	}
+	#page-header a.active {
+		border: none;
+		color: #EBE756;
+	}
 	.item-list {
 		min-width: 100%;
 		width: 100%;
@@ -822,9 +862,6 @@ textarea {
 		padding: 10px 0;
 	}
 
-	.mission-head div {
-		
-	}
 	.mission-head .mission-head-date {
 		margin-left: 4px;
 		flex: 10;
@@ -860,9 +897,20 @@ textarea {
 		width: 100%;
 		margin: 100px 0 0 0;
 	}
+	#main-navigation a:hover {
+		border: none;
+	}
+	#main-navigation a:active {
+		background-color: #EBE756;
+		color: #000;
+	}
 	#main-navigation #menu-close {
 		display: block;
 		font-size: 4.5rem;
+	}
+	#main-navigation #menu-close:active {
+		background-color: #C93C39;
+		color: #fff;
 	}
 	#main-navigation #menu-close i {
 		color: #C93C39;
