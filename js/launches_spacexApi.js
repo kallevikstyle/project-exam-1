@@ -148,17 +148,6 @@ function loadAPI(loadedLaunches) {
             // Send data to section object and call displayMissionHeads
             loadedLaunches.getData(data);
             displayMissionHeads(loadedLaunches, loadedLaunches.allData);
-            // Open requested mission container from index CTA
-            if (window.location.hash.includes("flight")) {
-
-                const flightNumber = parseInt(window.location.hash.match(/\d+/g)[0]);
-                    launch = data.filter(function(data) {
-                        return data.flight_number === flightNumber;
-                    });
-            }
-            // Open mission container and scroll to id flightNumber
-            
-            
         })
         .catch(err => console.log(err));
 };

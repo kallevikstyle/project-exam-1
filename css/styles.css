@@ -941,6 +941,9 @@ textarea {
 
 	/* Mobile Index
 	----------------- */
+	#countdown {
+		margin-top: 200px;
+	}
 	#countdown .item-container > div {
 		flex-direction: column;
 	}
@@ -963,6 +966,12 @@ textarea {
 	}
 	#bottom-container .item-img img {
 		margin: 0 auto;
+	}
+	#cta-circle {
+		
+		-webkit-transition: all 0.1s ease-out;
+		  -moz-transition: all 0.1s ease-out;
+		transition: all 0.1s ease-out;
 	}
 
 	/* Mobile Launches
