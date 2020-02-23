@@ -265,7 +265,7 @@ function displayMissionDetails(data, parentContainer) {
 
     // Add content to elements
     itemImg.innerHTML = `
-        <img src=${missionPatch}>
+        <img src=${missionPatch} alt="${launch[0].mission_name}">
     `;
     itemHeading.innerHTML = `Flight number ${launch[0].flight_number}: ${launch[0].mission_name}`;
     itemDetails.innerHTML = `

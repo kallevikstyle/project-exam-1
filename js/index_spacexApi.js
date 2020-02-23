@@ -80,7 +80,7 @@ function displayMissionPreview(section) {
 
     // Add content to elements
     itemImg.innerHTML = `
-        <img src="${missionPatch}">
+        <img src="${missionPatch}" alt="${section.allData.mission_name}">
     `;
     itemDetails.innerHTML = `
         <div>
