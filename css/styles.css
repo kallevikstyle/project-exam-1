@@ -153,6 +153,7 @@ main > *:first-child {
 	border-radius: 2px;
 	cursor: pointer;
 }
+
 .mission-head:hover {
 	background-color: #EBE756;
 }
@@ -543,7 +544,11 @@ PAGES
 	justify-content: center;
 }
 #launches-container .mission-head a {
-	display: inline;
+	text-decoration: none;
+	color: #000;
+}
+#launches-container .mission-head a:active {
+	color: #fff;
 }
 #launches-container section {
 	flex: 1;
@@ -683,6 +688,10 @@ textarea {
 	margin-top: 30px;
 	padding: 10px;
 	background-color: #06204A;
+}
+#contact-form a {
+	display: inline;
+	text-decoration: none;
 }
 
 #message-submit:hover {

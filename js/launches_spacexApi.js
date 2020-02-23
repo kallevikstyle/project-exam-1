@@ -177,20 +177,22 @@ function displayMissionHeads(loadedLaunches, data) {
             missionWrapper.id = `flight${data[i].flight_number}`;
             missionHead.classList.add('mission-head');
             missionHead.classList.add('flex');
+            // missionHead.setAttribute("role", "link");
 
             // Add content to mission head
             missionHead.innerHTML = `
-                <div class="mission-head-date">${launchDate}</div>
-                <div class="mission-head-name">${data[i].mission_name}</div>
-                <div class="mission-head-rocket">${data[i].rocket.rocket_name}</div>
-                <div class="mission-head-arrow"><i class="fas fa-angle-right"></i></div>
+            <div class="mission-head-date">${launchDate}</div>
+            <div class="mission-head-name"><a href="#" title="See mission details" role="link">${data[i].mission_name}</a></div>
+            <div class="mission-head-rocket">${data[i].rocket.rocket_name}</div>
+            <div class="mission-head-arrow"><i class="fas fa-angle-right"></i></div>
             `;
             // Append mission head to container
             missionWrapper.appendChild(missionHead);
             loadedLaunches.parentContainer.appendChild(missionWrapper);
             
             // Event listener to open and close mission details container
-            missionHead.addEventListener('click', function() {
+            missionHead.addEventListener('click', function(e) {
+                e.preventDefault();
                 const itemContainer = missionWrapper.querySelector('.item-container');
                 if (itemContainer) {
                     removeOpenItemContainer();
