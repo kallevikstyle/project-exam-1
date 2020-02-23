@@ -143,9 +143,5 @@ function loadAPI(section) {
     showNextMission.addEventListener('click', function(e) {
         e.preventDefault();
         indexSections.nextMissionPreview.parentContainer.classList.toggle('undisplay');
-        if (!indexSections.nextMissionPreview.parentContainer.classList.contains('undisplay')) {
-            location.hash = "";
-            location.hash = "#show-next-mission";
-        }
     });
 })();
